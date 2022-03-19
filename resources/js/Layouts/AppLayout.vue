@@ -231,6 +231,17 @@
 
             <!-- Page Content -->
             <main>
+                 <div v-if="$page.props.flash.status == 'Item created'" class="bg-green-500 text-white text-sm font-bold p-4">
+                    <p>{{ $page.props.flash.status }}</p>
+                </div>
+                <div v-if="$page.props.flash.status == 'Item updated'" class="bg-blue-500 text-white text-sm font-bold p-4">
+                    <p>{{ $page.props.flash.status }}</p>
+                </div>
+                <div v-if="$page.props.flash.status == 'Item deleted'" class="bg-red-500 text-white text-sm font-bold p-4">
+                    <p>{{ $page.props.flash.status }}</p>
+                </div>
+                
+
                 <slot></slot>
             </main>
         </div>

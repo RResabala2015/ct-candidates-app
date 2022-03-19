@@ -36,26 +36,23 @@ class ItemController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *@param \App\Models\Item $item
+     * @param \App\Models\Item $item
      * @param  \Illuminate\Http\Request  $request
-     * 
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Item $item)
     {
-        //Save new Item
+     //Save new Item
       $request->validate([
             'name' => 'required',
         ]);
-
         $item = Item::create($request->all());
-        return redirect()->route('items.edit', $item->id);
+        return redirect()->route('items.edit', $item->id)->with('status', 'Item created');
     }
 
     /**
      * Display the specified resource.
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -79,7 +76,6 @@ class ItemController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @param \App\Models\Item $item
@@ -93,7 +89,7 @@ class ItemController extends Controller
 
         //Update items
         $item->update($request->all());
-        return redirect()->route('items.index');
+        return redirect()->route('items.index')->with('status', 'Item updated');
         
     }
 
@@ -107,7 +103,7 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        return redirect()->route('items.index');
+        return redirect()->route('items.index')->with('status', 'Item deleted');
 
     }
 }

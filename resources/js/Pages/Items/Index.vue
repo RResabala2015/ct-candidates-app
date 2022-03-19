@@ -19,7 +19,27 @@
                             </p>
                         </div>
                     </div>
-
+                    <div class="md:col-span-2 mt-5 md:mt-0">
+                        <div class="shawdow bg-white md:rounded-md p-4">
+                            <table>
+                                <tr v-for="item in items">
+                                    <td class="border px-4 py-2">
+                                        {{ item.name }}
+                                    </td>
+                                    <td class="px-4 py-2">
+                                        <inertia-link :href="route('items.show', item.id)">
+                                         View
+                                        </inertia-link>
+                                    </td>
+                                    <td class="px-4 py-2">
+                                        <inertia-link :href="route('items.edit', item.id)">
+                                         Edit
+                                        </inertia-link>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,5 +56,8 @@
             AppLayout,
 
         },
+        props:{
+            items:Array,
+        }
     })
 </script>

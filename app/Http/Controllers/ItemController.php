@@ -99,20 +99,15 @@ class ItemController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @param \App\Models\Item $item
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Item $item)
     {
-        //Deleted Items
-        $existingItem = Item::find($id);
+        $item->delete();
 
-        if($existingItem){
-            $existingItem-> delete();
-            return "Item successfully deleted";
-        }
+        return redirect()->route('items.index');
 
-        return "Item not found";
     }
 }

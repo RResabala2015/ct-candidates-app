@@ -35,6 +35,10 @@
                                 Edit
                                 </button>
                            </form>
+                           <hr class="my-6">
+                           <a href="#" @click.prevent="destroy">
+                               Delete Activity
+                           </a>
                         </div>
                     </div>
                 </div>
@@ -66,6 +70,11 @@
         methods:{
             submit(){
                 this.$inertia.put(this.route('items.update',this.item.id), this.form)
+            },
+            destroy(){
+                if(confirm('¿Are you sure?')){
+                this.$inertia.delete(this.route('items.destroy',this.item.id), this.form)
+                }
             }
         }
     })

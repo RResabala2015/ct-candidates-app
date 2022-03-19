@@ -22930,6 +22930,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submit: function submit() {
       this.$inertia.put(this.route('items.update', this.item.id), this.form);
+    },
+    destroy: function destroy() {
+      if (confirm('¿Are you sure?')) {
+        this.$inertia["delete"](this.route('items.destroy', this.item.id), this.form);
+      }
     }
   }
 }));
@@ -26882,6 +26887,12 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+  "class": "my-6"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
 
@@ -26905,7 +26916,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.form.name]]), _hoisted_9], 32
       /* HYDRATE_EVENTS */
-      )])])])])])];
+      ), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "#",
+        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return _ctx.destroy && _ctx.destroy.apply(_ctx, arguments);
+        }, ["prevent"]))
+      }, " Delete Activity ")])])])])])];
     }),
     _: 1
     /* STABLE */

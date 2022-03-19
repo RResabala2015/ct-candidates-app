@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use Illuminate\Support\Carbon;
+use Inertia\Inertia;
 
 class ItemController extends Controller
 {
@@ -15,8 +16,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //Return all Items
-        return Item::orderBy('created_at','DESC')->get();
+        //Return all Items with Inertia
+        return Inertia::render('Items/Index',[
+            'items' => Item::latest()->get() 
+        ]);
     }
 
     /**

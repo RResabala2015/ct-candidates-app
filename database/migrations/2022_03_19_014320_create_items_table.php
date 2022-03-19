@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        //My table Items structure
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table-> string('name');
+            $table-> boolean('completed')->default(false);
+            $table -> timestamp('completed_at')-> nullable();
             $table->timestamps();
         });
     }

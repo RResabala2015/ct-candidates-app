@@ -23,7 +23,7 @@
                                     Dashboard
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('items.index')" :active="route().current('index.*')">
-                                    Activitys
+                                    Activities
                                 </jet-nav-link>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                             Dashboard
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link :href="route('items.index')" :active="route().current('items.*')">
-                            Activitys
+                            Activities
                         </jet-responsive-nav-link>
                     </div>
 

@@ -11,14 +11,16 @@ class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //Return all Items with Inertia
         return Inertia::render('Items/Index',[
-            'items' => Item::latest()->get() 
+            'items' => Item::latest()
+            ->where('name', 'LIKE',"%$request->q%")
+            ->get() 
         ]);
     }
 

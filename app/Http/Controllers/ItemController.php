@@ -55,7 +55,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        //To show the activity details
+        return Inertia::render('Items/Show', compact('none'));
     }
 
     /**

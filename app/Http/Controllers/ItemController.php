@@ -31,24 +31,26 @@ class ItemController extends Controller
     {
         //Create Item
         return Inertia::render('Items/Create');
-        
+
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     *@param \App\Models\Item $item
      * @param  \Illuminate\Http\Request  $request
      * 
      * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
         //Save new Item
-        $newItem = new Item;
-        $newItem->name = $request->item["name"];
-        $newItem->save();
-        return $newItem;
+      $request->validate([
+            'name' => 'required',
+        ]);
+
+        $item = Item::create($request->all());
+        return redirect()->route('items.edit', $item->id);
     }
 
     /**

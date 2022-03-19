@@ -21,7 +21,7 @@
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
-                           <form>
+                           <form @submit.prevent="submit">
                                <label class ="block font-medium text-sm text-gray-700">
                                    Activity
                                </label>
@@ -54,14 +54,18 @@
 
         },
         props:{
-            item:Object,
+            item: Object,
         },
         data(){
             return{
                 form:{
-                    name: this.item.name,
-                    completed: this.item.completed
+                    name: this.item.name
                 }
+            }
+        },
+        methods:{
+            submit(){
+                this.$inertia.put(this.route('items.update',this.item.id), this.form)
             }
         }
     })

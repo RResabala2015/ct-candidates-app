@@ -78,20 +78,19 @@ class ItemController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //Update items
-        $existingItem = Item::find($id);
+        $request->validate([
+            'name' => 'required',
+        ]);
 
-        if($existingItem){
-            $existingItem->completed =$request->item['completed']? true : false;
-            $existingItem->completed_at =$request->item['completed']? Carbon::now() : null;
-            $existingItem->save();
-            return $existingItem;
-        }
-        return "Item not found | 404";
+        //Update items
+        $item->update($request->all());
+        return redirect()->route('items.index');
+        
     }
 
     /**

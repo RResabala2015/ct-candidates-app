@@ -63,13 +63,14 @@ class ItemController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * @param \App\Models\Item $item
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
-        //
+        //Edit Activity
+        return Inertia::render('Items/Edit', compact('item'));
     }
 
     /**

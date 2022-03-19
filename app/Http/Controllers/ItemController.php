@@ -24,12 +24,14 @@ class ItemController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        //Create Item
+        return Inertia::render('Items/Create');
+        
     }
 
     /**

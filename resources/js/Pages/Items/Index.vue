@@ -21,6 +21,9 @@
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
+                            <inertia-link :href ="route('items.create')"                           class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">
+                                Save
+                            </inertia-link>
                             <table>
                                 <tr v-for="item in items">
                                     <td class="border px-4 py-2">

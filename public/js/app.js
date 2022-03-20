@@ -27216,7 +27216,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT, CLASS */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
           href: _ctx.route('items.show', item.id),
-          "class": "bg-green-600 text-white font-bold py-2 px-4 mx-2 rounded-md"
+          "class": "bg-green-600 text-white font-bold py-1 px-4 mx-2 rounded-md text-sm"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [_hoisted_14];
@@ -27228,7 +27228,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* PROPS, DYNAMIC_SLOTS */
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
           href: _ctx.route('items.edit', item.id),
-          "class": "bg-yellow-500 text-white font-bold py-2 px-4 mx-2 rounded-md"
+          "class": "bg-yellow-500 text-white font-bold py-1 px-4 mx-2 rounded-md text-sm"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [_hoisted_15];

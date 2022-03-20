@@ -50,11 +50,11 @@
                                <span :class="[item.completed? 'completed': '','itemText']">{{ item.name }}</span>
                                <div class="actions-btn">
                                    <inertia-link :href="route('items.show', item.id)"
-                                   class="bg-green-600 text-white font-bold py-2 px-4 mx-2 rounded-md">
+                                   class="bg-green-600 text-white font-bold py-1 px-4 mx-2 rounded-md text-sm">
                                          View
                               </inertia-link>
                               <inertia-link :href="route('items.edit', item.id)"
-                              class="bg-yellow-500 text-white font-bold py-2 px-4 mx-2 rounded-md">
+                              class="bg-yellow-500 text-white font-bold py-1 px-4 mx-2 rounded-md text-sm">
                                          Edit
                               </inertia-link>
                            

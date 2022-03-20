@@ -25,15 +25,19 @@
                                <label class ="block font-medium text-sm text-gray-700">
                                    Activity
                                </label>
-                               <textarea
-                                class="form-input w-full rounded-md shadow-sm"
+                               <div class="grid grid-cols-2 gap-6">
+                                   <input type="text"
+                                class="form-input rounded-md w-full shadow-sm" placeholder="What do you need to do today?"
                                 v-model="form.name">
-                                   rows="8" 
-                                </textarea>
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white
+                                <div>
+                                    <button class="bg-blue-500 hover:bg-blue-700 text-white
                                 font-bold py-2 px-4">
                                 Save
                                 </button>
+                                </div>
+                                
+                               </div>
+                               
                            </form>
                         </div>
                     </div>
@@ -67,3 +71,9 @@
         }
     })
 </script>
+
+.addItem{
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+}

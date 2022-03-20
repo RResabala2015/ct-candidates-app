@@ -25,7 +25,9 @@
                             <input type="text" class="form-input rounded-md shadow-sm place" placeholder="Search "
                             v-model="q" search-input.sync="q">
                             <inertia-link :href ="route('items.create')"                           class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">
-                               <font-awesome-icon icon="fa-regular fa-plus" />
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
                             </inertia-link>
                             </div>
                            <hr class="my-6">

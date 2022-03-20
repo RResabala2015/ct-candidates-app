@@ -2,7 +2,7 @@
     <app-layout title="Items">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Activity Detail
+                Todolist
             </h2>
         </template>
 
@@ -12,10 +12,11 @@
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">
-                                Items List
+                                Activity Detail
                             </h3>
                             <p class="text-sn text-gray-600">
-                                You can do it!
+                                In this section you can see <br>anyway from 
+                                your arguments <br>list status
                             </p>
                         </div>
                     </div>

@@ -35,7 +35,7 @@
                                type="checkbox"
                                v-model="item.completed"
                                class="m-2">
-                               <span :class="[item.completed? 'completed': '','itemText']"> {{ item.name }} </span>
+                               <span :class="[item.completed? 'completed': '','itemText']">{{ item.name }}</span>
                                <div class="actions-btn">
                                    <inertia-link :href="route('items.show', item.id)">
                                          View

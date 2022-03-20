@@ -2,7 +2,7 @@
     <app-layout title="Items">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Items
+                Todolist
             </h2>
         </template>
 
@@ -12,10 +12,10 @@
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">
-                                Items List
+                                Welcome!
                             </h3>
                             <p class="text-sn text-gray-600">
-                                You can do it!
+                                With this system you will be able <br> to record your activities, and not <br> forget what you have to do.
                             </p>
                         </div>
                     </div>

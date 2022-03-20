@@ -23,7 +23,7 @@
                                     Dashboard
                                 </jet-nav-link>
                                 <jet-nav-link :href="route('items.index')" :active="route().current('index.*')">
-                                    Activities
+                                    TodoList
                                 </jet-nav-link>
                             </div>
                         </div>

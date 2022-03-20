@@ -36,13 +36,21 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                             </inertia-link>
-
-                          
                          
                             </div>
                            <hr class="my-6">
                            <form @submit.prevent="submit">
-                           <div class = "item py-4 px-4" v-for="item in items" :key="item">
+                               <div 
+                               class="drop-zone"
+                               @drop="onDrop($event,1)"
+                               @dragenter.prevent
+                               @dragover.prevent
+                               >
+                                <div class = "itema py-4 px-4"
+                                 v-for="item in items" 
+                                 :key="item.id"
+                                 draggable="true"
+                                 @dragstart="startDrag($event,item)">
                                <input 
                                type="checkbox"
                                v-model="item.completed"
@@ -64,8 +72,9 @@
                             <div>
                                 <hr class="my-1">
                             </div>
-                            
+                             </div>
                            </div>
+                           
                           </form>
                         </div>
                     </div>
@@ -81,6 +90,25 @@
    
 
     export default defineComponent({
+        setup(){
+            const items= items
+            const startDrag =(event, item)=>{
+                console.log(item)
+                event.dataTransfer.dropEffect = 'move'
+                event.dataTransfer.effectAllowed = 'move'
+                event.dataTransfer.setData('itemID',item.id)
+            }
+            const onDrop= (event,list)=>{
+                const itemID = event.dataTransfer.getData('itemID')
+                const item = items.value.find((item)=>item.id== itemID)
+                item.list = list
+            }
+            return{
+                onDrop,
+                startDrag,
+
+            }
+        },
         components: {
             AppLayout,
 
@@ -109,7 +137,7 @@
     width: 100%;
     margin-left: 20px;
 }
-.item{
+.itema{
     display: flexbox;
     justify-content: center;
     align-items: center;

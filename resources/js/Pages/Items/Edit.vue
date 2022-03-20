@@ -35,7 +35,11 @@
                                 Save
                                 </button>
                                  </div>
-                                <div class="w-4">
+                                                             
+                               </div>
+                               
+                           </form>
+                           <div class="w-4 my-5">
                                 <button class="bg-red-500 hover:bg-red-700 text-white
                                 font-bold py-2 px-4 ">
                                 <a href="#" @click.prevent="destroy">
@@ -43,11 +47,6 @@
                                 </a>
                                 </button>
                                 </div>
-                               
-                               
-                               </div>
-                               
-                           </form>
                            
                            <hr class="my-6">
                              <inertia-link :href="route('items.index')" class="font-bold">

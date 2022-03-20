@@ -87,13 +87,6 @@
             q:function(value){
                 this.$inertia.replace(this.route('items.index',{q: value}));
             }
-        },
-         methods:{
-            destroy(){
-                if(confirm('¿Are you sure?')){
-                this.$inertia.delete(this.route('items.destroy',this.item.id), this.form)
-                }
-            }
         }
     })
 </script>

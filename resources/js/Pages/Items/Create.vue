@@ -79,8 +79,3 @@
     })
 </script>
 
-.addItem{
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-}

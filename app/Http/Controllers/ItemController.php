@@ -50,7 +50,7 @@ class ItemController extends Controller
             'name' => 'required',
         ]);
         $item = Item::create($request->all());
-        return redirect()->route('items.edit', $item->id)->with('status', 'Item created');
+        return redirect()->route('items.index')->with('status', 'Item created');
     }
 
     /**

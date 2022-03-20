@@ -86,8 +86,11 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $request->validate([
-            'name' => 'required',
+            'id',
+            'name',
+            'completed'
         ]);
+
 
         //Update items
         $item->update($request->all());

@@ -53,6 +53,7 @@
                                  @dragstart="startDrag($event,item)">
                                <input 
                                type="checkbox"
+                               @change="updateCheck()"
                                v-model="item.completed"
                                class="m-2">
                                <span :class="[item.completed? 'completed': '','itemText']">{{ item.name }}</span>
@@ -115,6 +116,12 @@
         },
         props:{
             items:Array,
+        },
+        methods:{
+            updateCheck(){
+                this.$inertia.put(this.route('items.update',this.item.id), this.form)
+            }
+
         },
         data(){
             return{

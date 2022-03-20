@@ -28,7 +28,7 @@
                                <div class="grid grid-cols-2 gap-6">
                                    <input type="text"
                                 class="form-input  w-full shadow-sm" placeholder="What do you need to do today?"
-                                v-model="form.name">
+                                v-model="form.name" required>
                                 <div>
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white
                                 font-bold py-2 px-4">

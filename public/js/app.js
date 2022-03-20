@@ -26879,7 +26879,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         placeholder: "What do you need to do today?",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return _ctx.form.name = $event;
-        })
+        }),
+        required: ""
       }, null, 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.form.name]]), _hoisted_10])], 32

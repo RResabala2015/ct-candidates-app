@@ -12,7 +12,7 @@
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">
-                                Edit your activity
+                                Change your activity
                             </h3>
                             <p class="text-sn text-gray-600">
                                 Edit and modify your activities <br>without any problem, have fun.
@@ -22,7 +22,7 @@
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
                            <form @submit.prevent="submit">
-                               <label class ="block font-medium text-sm text-gray-700 py-2">
+                               <label class ="block font-bold text-sm text-gray-700 py-2">
                                    Edit your activity
                                </label>
                                <div class="grid grid-cols-2 gap-6">

@@ -29,23 +29,32 @@
                             </inertia-link>
                             </div>
                            <hr class="my-6">
-                            <table>
-                                <tr v-for="item in items">
-                                    <td class="border px-4 py-2">
-                                        {{ item.name }}
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        <inertia-link :href="route('items.show', item.id)">
+                           <form @submit.prevent="submit">
+                           <div class = "item py-4 px-4" v-for="item in items" :key="item">
+                               <input 
+                               type="checkbox"
+                               v-model="item.completed"
+                               class="m-2">
+                               <span :class="[item.completed? 'completed': '','itemText']"> {{ item.name }} </span>
+                               <div class="actions-btn">
+                                   <inertia-link :href="route('items.show', item.id)">
                                          View
-                                        </inertia-link>
-                                    </td>
-                                    <td class="px-4 py-2">
-                                        <inertia-link :href="route('items.edit', item.id)">
+                              </inertia-link>
+                              <inertia-link :href="route('items.edit', item.id)">
                                          Edit
-                                        </inertia-link>
-                                    </td>
-                                </tr>
-                            </table>
+                              </inertia-link>
+                              <a href="#" @click.prevent="destroy">
+                               Delete Activity
+                                </a>
+                                   
+                               </div>
+                               
+                            <div>
+                                <hr class="my-1">
+                            </div>
+                            
+                           </div>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -76,6 +85,32 @@
             q:function(value){
                 this.$inertia.replace(this.route('items.index',{q: value}));
             }
+        },
+         methods:{
+            destroy(){
+                if(confirm('¿Are you sure?')){
+                this.$inertia.delete(this.route('items.destroy',this.item.id), this.form)
+                }
+            }
         }
     })
 </script>
+<style scoped>
+.completed{
+    text-decoration: line-through;
+    color: #999999;
+}
+.itemText{
+    width: 100%;
+    margin-left: 20px;
+}
+.item{
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+}
+.actions-btn{
+    float: right;
+}
+</style>
+

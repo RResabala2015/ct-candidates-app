@@ -2,7 +2,7 @@
     <app-layout title="Items">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Activity Detail
+                Todolist
             </h2>
         </template>
 
@@ -12,10 +12,11 @@
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">
-                                Create new Item
+                                Create new activity
                             </h3>
                             <p class="text-sn text-gray-600">
-                                You can create some activities
+                                You can create some activities, <br>
+                                enjoy and share to the world
                             </p>
                         </div>
                     </div>

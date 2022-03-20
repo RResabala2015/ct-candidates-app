@@ -22,17 +22,17 @@
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
                            <form @submit.prevent="submit">
-                               <label class ="block font-medium text-sm text-gray-700">
-                                   Activity
+                               <label class ="block font-bold text-sm text-gray-700 py-2">
+                                   Awesome Todo List
                                </label>
                                <div class="grid grid-cols-2 gap-6">
                                    <input type="text"
-                                class="form-input rounded-md w-full shadow-sm" placeholder="What do you need to do today?"
+                                class="form-input  w-full shadow-sm" placeholder="What do you need to do today?"
                                 v-model="form.name">
                                 <div>
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white
                                 font-bold py-2 px-4">
-                                Save
+                                Add
                                 </button>
                                 </div>
                                 

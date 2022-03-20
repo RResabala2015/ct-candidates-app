@@ -26819,8 +26819,8 @@ var _hoisted_7 = {
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "block font-medium text-sm text-gray-700"
-}, " Activity ", -1
+  "class": "block font-bold text-sm text-gray-700 py-2"
+}, " Awesome Todo List ", -1
 /* HOISTED */
 );
 
@@ -26830,7 +26830,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
-}, " Save ")], -1
+}, " Add ")], -1
 /* HOISTED */
 );
 
@@ -26850,7 +26850,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, ["prevent"]))
       }, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
-        "class": "form-input rounded-md w-full shadow-sm",
+        "class": "form-input w-full shadow-sm",
         placeholder: "What do you need to do today?",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return _ctx.form.name = $event;

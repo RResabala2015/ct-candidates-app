@@ -39,15 +39,15 @@
                                class="m-2">
                                <span :class="[item.completed? 'completed': '','itemText']">{{ item.name }}</span>
                                <div class="actions-btn">
-                                   <inertia-link :href="route('items.show', item.id)">
+                                   <inertia-link :href="route('items.show', item.id)"
+                                   class="bg-green-600 text-white font-bold py-2 px-4 mx-2 rounded-md">
                                          View
                               </inertia-link>
-                              <inertia-link :href="route('items.edit', item.id)">
+                              <inertia-link :href="route('items.edit', item.id)"
+                              class="bg-yellow-500 text-white font-bold py-2 px-4 mx-2 rounded-md">
                                          Edit
                               </inertia-link>
-                              <a href="#" @click.prevent="destroy">
-                               Delete Activity
-                                </a>
+                           
                                    
                                </div>
                                

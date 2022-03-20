@@ -1063,6 +1063,12 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mr-5 {
+  margin-right: 1.25rem;
+}
+.mr-6 {
+  margin-right: 1.5rem;
+}
 .block {
   display: block;
 }
@@ -1104,6 +1110,12 @@ select {
 }
 .h-20 {
   height: 5rem;
+}
+.h-7 {
+  height: 1.75rem;
+}
+.h-1 {
+  height: 0.25rem;
 }
 .min-h-screen {
   min-height: 100vh;

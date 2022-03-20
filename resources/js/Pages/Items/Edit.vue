@@ -2,7 +2,7 @@
     <app-layout title="Items">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Activity Detail
+                Todo List
             </h2>
         </template>
 
@@ -12,10 +12,10 @@
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px0">
                             <h3 class="text-lg text-gray-900">
-                                Edit Item
+                                Edit your activity
                             </h3>
                             <p class="text-sn text-gray-600">
-                                You can do it!
+                                Edit and modify your activities <br>without any problem, have fun.
                             </p>
                         </div>
                     </div>

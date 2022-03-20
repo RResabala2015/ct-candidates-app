@@ -25,7 +25,7 @@
                             <input type="text" class="form-input rounded-md shadow-sm place" placeholder="Search "
                             v-model="q" search-input.sync="q">
                             <inertia-link :href ="route('items.create')"                           class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">
-                                Save
+                               <font-awesome-icon icon="fa-regular fa-plus" />
                             </inertia-link>
                             </div>
                            <hr class="my-6">

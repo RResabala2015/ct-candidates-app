@@ -22,9 +22,24 @@
                     </div>
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
-                           <p>
+                             <label class ="block font-bold text-sm text-gray-700 py-2">
+                                   Your activity:
+                            </label>
+                            <div>
+                             <p class="inline-block">
                             {{item.name}}
                             </p>
+                                
+                            <div v-if="item.completed == 0" class="bg-red-500 text-white text-sm font-bold p-2 info-btn">
+                                    <p>Incompleted</p>
+                            </div>
+                            <div v-if="item.completed == 1" class="bg-green-500 text-white text-sm font-bold p-2 info-btn">
+                                    <p>Completed</p>
+                            </div>
+                            </div>
+
+                             
+                
                              <hr class="my-6">
                              <inertia-link :href="route('items.index')" class="font-bold">
                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -54,3 +69,9 @@
         }
     })
 </script>
+
+<style scoped>
+.info-btn{
+    float: right;
+}
+</style>

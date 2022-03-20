@@ -22,23 +22,39 @@
                     <div class="md:col-span-2 mt-5 md:mt-0">
                         <div class="shawdow bg-white md:rounded-md p-4">
                            <form @submit.prevent="submit">
-                               <label class ="block font-medium text-sm text-gray-700">
-                                   Activity
+                               <label class ="block font-medium text-sm text-gray-700 py-2">
+                                   Edit your activity
                                </label>
-                               <textarea
+                               <div class="grid grid-cols-2 gap-6">
+                                    <input type="text"
                                 class="form-input w-full rounded-md shadow-sm"
                                 v-model="form.name">
-                                   rows="8" 
-                                </textarea>
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white
-                                font-bold py-2 px-4">
-                                Edit
+                                <div class="w-4">
+                                 <button class="bg-blue-500 hover:bg-blue-700 text-white
+                                font-bold py-2 px-4 ">
+                                Save
                                 </button>
+                                 </div>
+                                <div class="w-4">
+                                <button class="bg-red-500 hover:bg-red-700 text-white
+                                font-bold py-2 px-4 ">
+                                <a href="#" @click.prevent="destroy">
+                                 Delete
+                                </a>
+                                </button>
+                                </div>
+                               
+                               
+                               </div>
+                               
                            </form>
+                           
                            <hr class="my-6">
-                           <a href="#" @click.prevent="destroy">
-                               Delete Activity
-                           </a>
+                             <inertia-link :href="route('items.index')" class="font-bold">
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                                </svg>Back
+                             </inertia-link>
                         </div>
                     </div>
                 </div>
@@ -79,3 +95,4 @@
         }
     })
 </script>
+

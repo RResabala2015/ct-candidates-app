@@ -65,14 +65,19 @@ class NewTaskController extends Controller
         return redirect('/new_task');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\newTask  $newTask
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(newTask $newTask)
+    public function confirmDelete($id)
     {
-        //
+        $newTask = NewTask::find($id);
+        return view('newTask.confirmDelete', [
+            'newTask' => $newTask
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $newTask = NewTask::find($id);
+        $newTask -> delete();
+        
+        return redirect('/new_task');
     }
 }

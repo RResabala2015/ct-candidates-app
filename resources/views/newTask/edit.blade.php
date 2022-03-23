@@ -32,13 +32,13 @@
 
                <div class="form-group">
                <label for="title">State: </label>
-               <select name="select"  name="estado" id="estado">
+               <select name="estado"  id="estado">
                     <option value ="{{$newTask -> estado}}" selected>{{$newTask -> estado}}</option>
                     <option value ="REALIZADO">REALIZADO</option>
                     <option value ="NO REALIZADO">NO REALIZADO</option>
                 </select>
                </div>
-
+            
                <br>
                <button class="btn btn-primary" type = "submit">Submit</button>    
            </form>

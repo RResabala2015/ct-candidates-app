@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/new_task','App\Http\Controllers\NewTaskController');
+
+Route::get('/new_task/{id}/confirmDelete', 'App\Http\Controllers\NewTaskController@confirmDelete');

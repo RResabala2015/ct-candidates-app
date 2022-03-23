@@ -2243,10 +2243,6 @@ var Home = function Home() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
 };
 
-var Contact = function Contact() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_Contact_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Contact.vue */ "./resources/js/components/Contact.vue"));
-};
-
 var Show = function Show() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_task_Show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/task/Show.vue */ "./resources/js/components/task/Show.vue"));
 };
@@ -2263,10 +2259,6 @@ var routes = [{
   name: 'home',
   path: '/',
   component: Home
-}, {
-  name: 'contact',
-  path: '/contact',
-  component: Contact
 }, {
   name: 'ShowTask',
   path: '/tasks',
@@ -19843,25 +19835,6 @@ var render = function () {
                   ],
                   1
                 ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: {
-                          "exact-active-class": "active",
-                          to: "/contact",
-                        },
-                      },
-                      [_vm._v("CONTACT")]
-                    ),
-                  ],
-                  1
-                ),
               ]),
               _vm._v(" "),
               _vm._m(1),
@@ -35359,7 +35332,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Contact_vue":1,"resources_js_components_task_Show_vue":1,"resources_js_components_task_Create_vue":1,"resources_js_components_task_Edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_task_Show_vue":1,"resources_js_components_task_Create_vue":1,"resources_js_components_task_Edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

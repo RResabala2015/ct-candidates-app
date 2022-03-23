@@ -1,5 +1,4 @@
 const Home = ()=>import('./components/Home.vue')
-const Contact =  ()=>import('./components/Contact.vue')
 
 
 const Show =  ()=>import('./components/task/Show.vue')
@@ -13,11 +12,6 @@ export const routes = [
         component: Home
     },
 
-    {
-        name: 'contact',
-        path: '/contact',
-        component: Contact
-    },
 
     {
         name: 'ShowTask',

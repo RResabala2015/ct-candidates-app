@@ -14,9 +14,6 @@
                     <li class="nav-item">
                         <router-link exact-active-class="active" to="/tasks" class="nav-link">TASK</router-link>
                     </li>   
-                     <li class="nav-item">
-                        <router-link exact-active-class="active" to="/contact" class="nav-link">CONTACT</router-link>
-                    </li>
                 </ul>
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

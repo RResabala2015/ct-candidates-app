@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\NewTask;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewTaskController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        return view('newTask.index', [
-            'newTasks' => NewTask::all()
-        ]);
+        $texto=trim($request->get('texto'));
+        $task=DB::table('new_tasks')
+                    ->select('id','title', 'Description','estado')
+                    ->where('title','LIKE','%'.$texto.'%')
+                    ->orderBy('id','asc')
+                    ->paginate(10);
+        return view('newTask.index', compact('task','texto'));
+
     }
 
+    
     
     public function create()
     {

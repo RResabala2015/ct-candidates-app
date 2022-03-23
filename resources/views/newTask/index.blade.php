@@ -23,7 +23,7 @@
         <br>
         <div class="row">
             <div class="col">
-                <form action="/new_task/" method='get'>
+              <form action="/new_task" method='get'>
                     <div class="form-row">
                         <div class="col-sm-4 my-1">
                             <input type="text" class="form-control" name="texto">
@@ -33,7 +33,7 @@
                         </div>
                         
                     </div>
-                </form>
+                </form> 
             </div>
         </div>
         <div class="row">
@@ -45,7 +45,7 @@
                         <td>Description</td>
                         <td>State</td>
                     </tr>
-                    @foreach($newTasks as $newTask)
+                    @foreach($task as $newTask)
                         <tr>
                             <td>{{$newTask ->id}}</td>
                             <td>{{$newTask ->title}}</td>

@@ -16,9 +16,9 @@ class NewTaskController extends Controller
 
     }
 
-    public function get($id)
+    public function get($name)
     {
-        $task = NewTask::find($id);
+        $task = NewTask::find($name);
         return response() -> json($task);
     }
 
@@ -35,7 +35,6 @@ class NewTaskController extends Controller
     {
         $task = NewTask::find($id);
         return response() -> json($task);
-        //return response() -> json($newTask);
     }
 
     public function edit($id)

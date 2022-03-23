@@ -61,4 +61,11 @@ class NewTaskController extends Controller
         $task = NewTask::find($title);
         return response() -> json($task);
     }
+
+    public function searchData($data)
+    {
+            $newdata = NewTask::where('title','LIKE','%'.$data.'%') -> get();
+            return $newdata;
+           
+    }
 }

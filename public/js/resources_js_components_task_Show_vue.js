@@ -66,11 +66,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "tasks",
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      search: ''
     };
   },
   mounted: function mounted() {
@@ -111,6 +118,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log(error);
         });
       }
+    },
+    searchdata: function searchdata(val) {
+      var _this3 = this;
+
+      axios.get('/search/' + val).then(function (res) {
+        if (val == '') {
+          _this3.ShowTask();
+        } else {
+          _this3.tasks = res.data;
+        }
+      });
+    }
+  },
+  watch: {
+    search: function search() {
+      this.searchdata(this.search);
     }
   }
 });
@@ -985,6 +1008,32 @@ var render = function () {
       ],
       1
     ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-12 mb-2" }, [
+      _c("form", { staticClass: "d-flex" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search",
+            },
+          ],
+          staticClass: "form-control-lg offset-0",
+          attrs: { placeholder: "Search" },
+          domProps: { value: _vm.search },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            },
+          },
+        }),
+      ]),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "table-responsive" }, [

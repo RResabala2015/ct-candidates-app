@@ -3,6 +3,12 @@
         <div class="col-12 mb-2">
             <router-link :to='{name:"CreateTask"}' class="btn btn-success"><i class="fas fa-plus-circle"></i>Nuew Task</router-link>
         </div>
+        <div class="col-12 mb-2">
+            <form class="d-flex">
+                <input class="form-control-lg offset-0"  placeholder="Search"  v-model="search">
+                <!--<button class="btn btn-outline-success" type="submit">Search</button>-->
+            </form>
+        </div>
         <div class="col-12">             
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -39,9 +45,11 @@ export default {
     name:"tasks",
     data(){
         return {
-            tasks:[]
+            tasks:[],
+            search:'',
         }
     },
+
     mounted(){
         this.ShowTask()
     },
@@ -62,7 +70,24 @@ export default {
                     console.log(error)
                 })
             }
+        },
+        searchdata:function(val){
+            axios.get('/search/'+val).then((res)=>{
+                if(val==''){
+                    this.ShowTask()
+                }else{
+                    this.tasks = res.data;
+                }
+                
+            })
+        }
+    },
+
+    watch:{
+        search:function(){
+            this.searchdata(this.search);
         }
     }
+
 }
 </script>

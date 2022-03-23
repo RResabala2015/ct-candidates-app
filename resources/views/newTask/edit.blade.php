@@ -38,7 +38,6 @@
                     <option value ="NO REALIZADO">NO REALIZADO</option>
                 </select>
                </div>
-            
                <br>
                <button class="btn btn-primary" type = "submit">Submit</button>    
            </form>

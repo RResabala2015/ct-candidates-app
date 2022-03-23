@@ -9,4 +9,6 @@ class NewTask extends Model
 {
     use HasFactory;
 
+    protected $fillable =['title','Description','estado'];
+    
 }

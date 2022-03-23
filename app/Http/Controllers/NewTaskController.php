@@ -9,82 +9,56 @@ use Illuminate\Support\Facades\DB;
 class NewTaskController extends Controller
 {
     
-    public function index(Request $request)
+    public function index()
     {
-        $texto=trim($request->get('texto'));
-        $task=DB::table('new_tasks')
-                    ->select('id','title', 'Description','estado')
-                    ->where('title','LIKE','%'.$texto.'%')
-                    ->orderBy('id','asc')
-                    ->paginate(10);
-        return view('newTask.index', compact('task','texto'));
+        $tasks = Newtask::all();
+        return response() -> json($tasks);
 
     }
 
-    
-    
-    public function create()
+    public function get($id)
     {
-        return view('newTask.create');
+        $task = NewTask::find($id);
+        return response() -> json($task);
     }
 
-    
     public function store(Request $request)
     {
-        $validaData = $request -> validate([
-            'title' => 'required|min:3',
-            'Description' => 'required|min:3'
+        $newtask = NewTask::create($request -> post());
+        return response() -> json([
+            'newtask' => $newtask
         ]);
-
-        $newTask = new NewTask();
-        $newTask -> title = $request -> get('title');
-        $newTask -> Description = $request -> get('Description');
-        $newTask -> estado =  "NO REALIZADO";
-        $newTask -> save();
         
-        return redirect('/new_task');
     }
 
-   
-    public function show(newTask $newTask)
+    public function show($id)
     {
-        //
+        $task = NewTask::find($id);
+        return response() -> json($task);
+        //return response() -> json($newTask);
     }
 
-   
     public function edit($id)
     {
-        $newTask = NewTask::find($id);
-        return view('newTask.edit',[
-            'newTask' => $newTask
-        ]);
+       //
     }
 
     
     public function update(Request $request, $id)
     {
-        $newTask = NewTask::find($id);
-        $newTask -> title = $request -> get('title');
-        $newTask -> Description = $request -> get('Description');
-        $newTask -> estado = $request -> get('estado');
-        $newTask -> save();
-        
-        return redirect('/new_task');
-    }
-
-    public function confirmDelete($id)
-    {
-        $newTask = NewTask::find($id);
-        return view('newTask.confirmDelete', [
-            'newTask' => $newTask
+        $task = NewTask::find($id);
+        $task -> fill($request -> post()) -> save();
+        return response() -> json([
+            'newtask' => $task
         ]);
     }
 
     public function destroy($id)
     {
-        $newTask = NewTask::find($id);
-        $newTask -> delete();
-        
-        return redirect('/new_task');
+        $task = NewTask::find($id);
+        $task ->delete();
+        return response()-> json([
+            'mensaje' => 'TAREA ELIMINADA'
+        ]);
     }
 }

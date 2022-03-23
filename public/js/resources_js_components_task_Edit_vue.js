@@ -1108,10 +1108,6 @@ var render = function () {
                       },
                     },
                     [
-                      _c("option", {
-                        attrs: { value: "task.estado", selected: "" },
-                      }),
-                      _vm._v(" "),
                       _c("option", { attrs: { value: "REALIZADO" } }, [
                         _vm._v("REALIZADO"),
                       ]),

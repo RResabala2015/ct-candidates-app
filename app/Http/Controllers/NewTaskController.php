@@ -16,11 +16,6 @@ class NewTaskController extends Controller
 
     }
 
-    public function get($name)
-    {
-        $task = NewTask::find($name);
-        return response() -> json($task);
-    }
 
     public function store(Request $request)
     {
@@ -59,5 +54,11 @@ class NewTaskController extends Controller
         return response()-> json([
             'mensaje' => 'TAREA ELIMINADA'
         ]);
+    }
+
+    public function getname($title)
+    {
+        $task = NewTask::find($title);
+        return response() -> json($task);
     }
 }

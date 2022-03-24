@@ -6,7 +6,6 @@
         <div class="col-12 mb-2">
             <form class="d-flex">
                 <input class="form-control-lg offset-0"  placeholder="Search"  v-model="search">
-                <!--<button class="btn btn-outline-success" type="submit">Search</button>-->
             </form>
         </div>
         <div class="col-12">             
@@ -80,13 +79,15 @@ export default {
                 }
                 
             })
-        }
+        },
+
     },
 
     watch:{
         search:function(){
             this.searchdata(this.search);
-        }
+        },
+
     }
 
 }

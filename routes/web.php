@@ -24,6 +24,7 @@ Route::get('/new_task/{id}/confirmDelete', 'App\Http\Controllers\NewTaskControll
 Route::get('search/{data}', [App\Http\Controllers\NewTaskController::class, 'searchData']);
 
 
+
 Route::get('{any}',function(){
     return view('app');
 })->where('any','.*');

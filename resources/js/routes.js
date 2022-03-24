@@ -12,7 +12,6 @@ export const routes = [
         component: Home
     },
 
-
     {
         name: 'ShowTask',
         path: '/tasks',

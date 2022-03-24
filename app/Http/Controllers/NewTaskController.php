@@ -68,4 +68,5 @@ class NewTaskController extends Controller
             return $newdata;
            
     }
+
 }

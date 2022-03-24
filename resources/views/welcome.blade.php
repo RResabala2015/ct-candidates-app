@@ -2,9 +2,11 @@
 
 @section('app')
 <div id="app">
-  <v-card>
-    Hello From Laravel and Vue
-  </v-card>           
+  <v-card >
+  <a class="btn btn-warning" href="/todolist">Hello From Laravel</a> 
+    
+  </v-card>  
+          
 </div>
 @endsection
 

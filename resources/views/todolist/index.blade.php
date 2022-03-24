@@ -47,8 +47,8 @@
                             <td>{{$newtodo ->id}}</td>
                             <td>{{$newtodo ->title}}</td>
                             <td>{{$newtodo ->status}}</td>
-                            <td><a class="btn btn-warning" href="/new_todo/{{$newtodo -> id}}/edit">Edit/State</a></td>
-                            <td><a class="btn btn-danger" href="/new_todo/{{$newtodo -> id}}/confirmDelete">Delete</a></td>
+                            <td><a class="btn btn-warning" href="/todolist/{{$newtodo -> id}}/edit">Edit/State</a></td>
+                            <td><a class="btn btn-danger" href="/todolist/{{$newtodo -> id}}/confirmDelete">Delete</a></td>
                         </tr>
                     @endforeach
                 </table>

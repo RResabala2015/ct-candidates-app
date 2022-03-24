@@ -72,7 +72,10 @@ class todolistcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $todo = Todolist::find($id);
+        return view('todolist.edit',[
+            'todo' => $todo
+        ]);
     }
 
     /**
@@ -84,7 +87,20 @@ class todolistcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $todo = Todolist::find($id);
+        $todo -> title = $request -> get('title');
+        $todo -> status = $request -> get('status');
+        $todo -> save();
+        
+        return redirect('/todolist');
+    }
+
+    public function confirmDelete($id)
+    {
+        $todo = Todolist::find($id);
+        return view('todolist.confirmDelete', [
+            'todo' => $todo
+        ]);
     }
 
     /**
@@ -95,6 +111,9 @@ class todolistcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todolist::find($id);
+        $todo -> delete();
+        
+        return redirect('/todolist');
     }
 }

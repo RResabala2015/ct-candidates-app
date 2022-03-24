@@ -11,7 +11,7 @@
         <div class="col-12">             
                     <div class="table-responsive">
                         <table class="table table-bordered">
-                            <thead class="bg-primary text-white">
+                            <thead class="p-3 mb-2 bg-secondary text-white">
                                 <tr>
                                     <th>ID</th>
                                     <th>title</th>

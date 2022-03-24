@@ -13,16 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('/new_task','App\Http\Controllers\NewTaskController');
-
-Route::get('/new_task/{id}/confirmDelete', 'App\Http\Controllers\NewTaskController@confirmDelete');*/
 
 Route::get('search/{data}', [App\Http\Controllers\NewTaskController::class, 'searchData']);
-
 
 
 Route::get('{any}',function(){

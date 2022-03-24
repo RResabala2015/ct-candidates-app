@@ -1095,7 +1095,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-primary text-white" }, [
+    return _c("thead", { staticClass: "p-3 mb-2 bg-secondary text-white" }, [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),

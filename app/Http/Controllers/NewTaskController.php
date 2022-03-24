@@ -64,7 +64,7 @@ class NewTaskController extends Controller
 
     public function searchData($data)
     {
-            $newdata = NewTask::where('title','LIKE','%'.$data.'%') -> get();
+            $newdata = NewTask::where('estado','LIKE', $data.'%') -> get();
             return $newdata;
            
     }

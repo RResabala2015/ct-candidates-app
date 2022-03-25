@@ -17,7 +17,7 @@ class todolistcontroller extends Controller
         $texto=trim($request->get('texto'));
         $todo=DB::table('todolists')
                     ->select('id','title','status')
-                    ->where('status','LIKE',$texto.'%')
+                    ->where('title','LIKE','%'.$texto.'%')
                     ->orderBy('id','asc')
                     ->paginate(10);
         return view('todolist.index', compact('todo','texto'));

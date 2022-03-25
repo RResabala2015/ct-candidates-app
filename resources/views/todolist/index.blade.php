@@ -24,9 +24,10 @@
               <form action="/todolist" method='get'>
                     <div class="form-row">
                         <div class="col-sm-4 my-1">
-                            <input type="text" class="form-control" name="texto">
+                            <input type="text" class="form-control" name="texto" placeholder="Search/Task" aria-label="search/tag">
                             <div class="col-auto my-1">
                                 <input type="submit" class="btn btn-primary" value="SEARCH">
+                                <input type="submit" class="btn btn-primary" value="Restablecer" href="/todolist" >
                             </div>
                         </div>
                         

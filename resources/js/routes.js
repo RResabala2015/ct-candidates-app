@@ -29,4 +29,5 @@ export const routes = [
         path: '/edit_task/:id',
         component: Edit
     }
+    
 ]

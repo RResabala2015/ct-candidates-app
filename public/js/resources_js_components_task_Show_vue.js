@@ -71,6 +71,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "tasks",
   data: function data() {
@@ -118,21 +119,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       }
     },
-    searchdata: function searchdata(val) {
+    chandeToDoState: function chandeToDoState(id) {
       var _this3 = this;
+
+      this.axios.get("/api/task/".concat(id)).then(function (response) {
+        var _response$data = response.data,
+            title = _response$data.title,
+            Description = _response$data.Description,
+            estado = _response$data.estado;
+        _this3.task.title = title, _this3.task.Description = Description;
+        if (estado == 'REALIZADO') _this3.task.estado = 'NO REALIZADO';else {
+          _this3.task.estado = 'REALIZADO';
+        }
+
+        _this3.axios.put("/api/task/".concat(id), _this3.task).then(function (response) {
+          _this3.$router.push({
+            name: "ShowTask"
+          });
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    searchdata: function searchdata(val) {
+      var _this4 = this;
 
       axios.get('/search/' + val).then(function (res) {
         if (val == '') {
-          _this3.ShowTask();
+          _this4.ShowTask();
         } else {
-          _this3.tasks = res.data;
+          _this4.tasks = res.data;
         }
       });
     }
   },
   watch: {
     search: function search() {
-      this.searchdata(this.search);
+      this.searchdata(this.search.trimEnd());
     }
   }
 });
@@ -1020,7 +1045,7 @@ var render = function () {
             },
           ],
           staticClass: "form-control-lg offset-0",
-          attrs: { placeholder: "Search" },
+          attrs: { placeholder: "SearchTask" },
           domProps: { value: _vm.search },
           on: {
             input: function ($event) {
@@ -1073,6 +1098,20 @@ var render = function () {
                         on: {
                           click: function ($event) {
                             return _vm.DeleteTask(task.id)
+                          },
+                        },
+                      },
+                      [_c("i", { staticClass: "fas fa-trash" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-warning",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.chandeToDoState(task.id)
                           },
                         },
                       },

@@ -22,8 +22,7 @@
 
                             <div class="col-12 mb-2">
                             <label for="title">State: </label>
-                            <select v-model="task.estado">
-                                    
+                            <select v-model="task.estado">             
                                     <option value ="REALIZADO">REALIZADO</option>
                                     <option value ="NO REALIZADO">NO REALIZADO</option>
                                 </select>

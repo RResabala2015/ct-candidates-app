@@ -5,7 +5,7 @@
         </div>
         <div class="col-12 mb-2">
             <form class="d-flex">
-                <input class="form-control-lg offset-0"  placeholder="Search"  v-model="search">
+                <input class="form-control-lg offset-0"  placeholder="SearchTask"  v-model="search">
             </form>
         </div>
         <div class="col-12">             
@@ -29,6 +29,7 @@
                                     <td>
                                         <router-link :to='{name:"EditTask",params:{id:task.id}}' class="btn btn-info"><i class="fas fa-edit"></i></router-link>
                                         <a type="button" @click="DeleteTask(task.id)" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        <a type="button" @click="chandeToDoState(task.id)" class="btn btn-warning"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -70,6 +71,27 @@ export default {
                 })
             }
         },
+
+        chandeToDoState(id){
+            this.axios.get(`/api/task/${id}`).then(response=>{
+                const  {title, Description,estado}  = response.data  
+                this.task.title = title,
+                this.task.Description = Description  
+                if(estado == 'REALIZADO')
+                    this.task.estado = 'NO REALIZADO'
+                else{
+                    this.task.estado = 'REALIZADO'
+                }
+                this.axios.put(`/api/task/${id}`,this.task).then(response=>{
+                this.$router.push({name:"ShowTask"})
+                }).catch(error=>{
+                    console.log(error)
+                })
+            }).catch(error=>{
+                    console.log(error)
+                })
+        },
+
         searchdata:function(val){
             axios.get('/search/'+val).then((res)=>{
                 if(val==''){
@@ -85,7 +107,7 @@ export default {
 
     watch:{
         search:function(){
-            this.searchdata(this.search);
+            this.searchdata(this.search.trimEnd());
         },
 
     }

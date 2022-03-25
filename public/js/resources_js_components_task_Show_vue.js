@@ -131,14 +131,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (estado == 'REALIZADO') _this3.task.estado = 'NO REALIZADO';else {
           _this3.task.estado = 'REALIZADO';
         }
-
-        _this3.axios.put("/api/task/".concat(id), _this3.task).then(function (response) {
-          _this3.$router.push({
-            name: "ShowTask"
-          });
-        })["catch"](function (error) {
-          console.log(error);
-        });
       })["catch"](function (error) {
         console.log(error);
       });

@@ -82,11 +82,6 @@ export default {
                 else{
                     this.task.estado = 'REALIZADO'
                 }
-                this.axios.put(`/api/task/${id}`,this.task).then(response=>{
-                this.$router.push({name:"ShowTask"})
-                }).catch(error=>{
-                    console.log(error)
-                })
             }).catch(error=>{
                     console.log(error)
                 })

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\task;
-use App\Http\Requests\StoretaskRequest;
 use App\Http\Requests\UpdatetaskRequest;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -15,17 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return task::all();
     }
 
     /**
@@ -34,9 +24,10 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoretaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoretaskRequest $request)
+    public function store(Request $request)
     {
-        //
+        $task = task::create($request->all());
+        return response()->json($task, 201);
     }
 
     /**
@@ -47,18 +38,7 @@ class TaskController extends Controller
      */
     public function show(task $task)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(task $task)
-    {
-        //
+        return $task;
     }
 
     /**
@@ -68,9 +48,16 @@ class TaskController extends Controller
      * @param  \App\Models\task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatetaskRequest $request, task $task)
+    public function update(Request $request, task $task)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string',
+            'completed' => 'required|boolean',
+        ]);
+
+        $task->update($data);
+
+        return response()->json($task, 200);
     }
 
     /**
@@ -81,6 +68,8 @@ class TaskController extends Controller
      */
     public function destroy(task $task)
     {
-        //
+        $task->delete();
+
+        return response('Deleted task', 200);
     }
 }

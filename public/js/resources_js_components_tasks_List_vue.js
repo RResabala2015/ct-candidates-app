@@ -79,6 +79,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "List",
   data: function data() {
@@ -993,79 +997,126 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c(
-      "div",
-      { staticClass: "col-lg-12 mb-4" },
-      [
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-success",
-            attrs: { to: { name: "newTask" } },
-          },
-          [_c("i", { staticClass: "fa-solid fa-list-check" })]
-        ),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "table-responsive" }, [
-        _c("table", { staticClass: "bg-primary text-white" }, [
-          _vm._m(0),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-lg-12 mb-4" },
+        [
+          _c("input", {
+            staticClass: "form-control me-2",
+            attrs: {
+              type: "search",
+              placeholder: "Search",
+              "aria-label": "Search",
+            },
+          }),
           _vm._v(" "),
           _c(
-            "tbody",
-            _vm._l(_vm.tasks, function (task) {
-              return _c("tr", { key: task.id }, [
-                _c("td", [_vm._v(_vm._s(task.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(task.title))]),
-                _vm._v(" "),
-                _c("td", [
-                  task.completed == 1
-                    ? _c("span", { staticClass: "badge badge-success" }, [
-                        _vm._v("Active"),
-                      ])
-                    : _c("span", { staticClass: "badge badge-danger" }, [
-                        _vm._v("Inactive"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-warning btn-sm",
-                        attrs: {
-                          to: { name: "editTask", params: { id: task.id } },
+            "router-link",
+            {
+              staticClass: "btn btn-success",
+              attrs: { to: { name: "newTask" } },
+            },
+            [_c("i", { staticClass: "fa-solid fa-list-check" })]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table table" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.tasks, function (task) {
+                return _c("tr", { key: task.id }, [
+                  _c("td", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: task.completed,
+                          expression: "task.completed",
+                        },
+                      ],
+                      staticClass: "form-check-input",
+                      attrs: {
+                        type: "checkbox",
+                        value: "",
+                        id: "flexCheckDefault",
+                      },
+                      domProps: {
+                        checked: Array.isArray(task.completed)
+                          ? _vm._i(task.completed, "") > -1
+                          : task.completed,
+                      },
+                      on: {
+                        change: function ($event) {
+                          var $$a = task.completed,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = "",
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(task, "completed", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  task,
+                                  "completed",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(task, "completed", $$c)
+                          }
                         },
                       },
-                      [_c("i", { staticClass: "fa-solid fa-edit" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function ($event) {
-                            return _vm.deleteTask(task.id)
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(task.title))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-warning btn-sm",
+                          attrs: {
+                            to: { name: "editTask", params: { id: task.id } },
                           },
                         },
-                      },
-                      [_c("i", { staticClass: "fa-solid fa-trash" })]
-                    ),
-                  ],
-                  1
-                ),
-              ])
-            }),
-            0
-          ),
+                        [_c("i", { staticClass: "fa-solid fa-edit" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteTask(task.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fa-solid fa-trash" })]
+                      ),
+                    ],
+                    1
+                  ),
+                ])
+              }),
+              0
+            ),
+          ]),
         ]),
       ]),
     ]),
@@ -1078,13 +1129,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("ID")]),
+        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", [_vm._v("Task")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")]),
+        _c("th", [_vm._v("Actions")]),
       ]),
     ])
   },

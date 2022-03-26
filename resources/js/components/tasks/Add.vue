@@ -12,13 +12,6 @@
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" v-model="task.title">
                             </div>
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select class="form-control" v-model="task.completed">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Create</button>
                             </div>
@@ -37,7 +30,7 @@ export default {
         return {
             task: {
                 title: "",
-                completed: 0,
+                completed: false,
             },
         };
     },

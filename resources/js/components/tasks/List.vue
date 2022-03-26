@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 mb-4">
+      <div class="col-lg-12 mb-4 mt-2">
         <input
-          class="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
@@ -17,7 +16,6 @@
           <table class="table table">
             <thead>
               <tr>
-                <th>Status</th>
                 <th>Task</th>
                 <th>Actions</th>
               </tr>
@@ -25,9 +23,9 @@
             <tbody>
               <tr v-for="task in tasks" :key="task.id">
                 <td>
-                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="task.completed">
+                  <input type="checkbox" v-model="task.completed" @change="updatecheck(task.id)"/>
+                  <span :class="[task.completed ? 'completed' : '']">{{ task.title }}</span>
                 </td>
-                <td>{{ task.title }}</td>
 
                 <td>
                   <router-link
@@ -83,6 +81,24 @@ export default {
           this.getTasks();
         });
     },
+    async updatecheck(id) {
+      await this.axios
+        .put("/api/tasks/" + id, {
+          completed: !this.tasks.completed,
+        })
+        .then((response) => {
+          this.getTasks();
+        })
+        .catch((error) => {
+          this.getTasks();
+        });
+    },
   },
 };
 </script>
+
+<style>
+.completed {
+  text-decoration: line-through;
+}
+</style>

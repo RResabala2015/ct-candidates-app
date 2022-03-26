@@ -57,12 +57,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Edit",
   data: function data() {
@@ -90,7 +84,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       title = _response$data.title,
                       completed = _response$data.completed;
                   _this.task.title = title;
-                  _this.task.completed = completed;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -1024,40 +1017,6 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.task, "title", $event.target.value)
-                        },
-                      },
-                    }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "description" } }, [
-                      _vm._v("Description"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.task.completed,
-                          expression: "task.completed",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "description",
-                        rows: "3",
-                        placeholder: "Enter description",
-                      },
-                      domProps: { value: _vm.task.completed },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.task, "completed", $event.target.value)
                         },
                       },
                     }),

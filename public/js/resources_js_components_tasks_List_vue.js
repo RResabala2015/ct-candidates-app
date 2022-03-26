@@ -81,11 +81,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "List",
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      search: ""
     };
   },
   mounted: function mounted() {
@@ -162,6 +177,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    getTask: function getTask() {
+      var _this4 = this;
+
+      this.axios.get("/api/tasks/" + this.search).then(function (response) {
+        _this4.tasks = response.data;
+      })["catch"](function (error) {
+        _this4.tasks = [];
+      });
+    }
+  },
+  watch: {
+    search: function search() {
+      this.getTask();
     }
   }
 });
@@ -1450,13 +1479,31 @@ var render = function () {
         "div",
         { staticClass: "col-lg-12 mb-4 mt-2" },
         [
-          _c("input", {
-            attrs: {
-              type: "search",
-              placeholder: "Search",
-              "aria-label": "Search",
-            },
-          }),
+          _c("div", { staticClass: "input-group input-group-sm" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search,
+                  expression: "search",
+                },
+              ],
+              staticClass: "form-control form-control-navbar mb-2",
+              attrs: { type: "search", placeholder: "Search by task" },
+              domProps: { value: _vm.search },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search = $event.target.value
+                },
+              },
+            }),
+            _vm._v(" "),
+            _vm._m(0),
+          ]),
           _vm._v(" "),
           _c(
             "router-link",
@@ -1464,7 +1511,10 @@ var render = function () {
               staticClass: "btn btn-success",
               attrs: { to: { name: "newTask" } },
             },
-            [_c("i", { staticClass: "fa-solid fa-list-check" })]
+            [
+              _c("i", { staticClass: "fa-solid fa-list-check" }),
+              _vm._v(" Add new task"),
+            ]
           ),
         ],
         1
@@ -1473,7 +1523,7 @@ var render = function () {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table table" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -1571,6 +1621,16 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("button", { staticClass: "btn btn-navbar" }, [
+        _c("i", { staticClass: "fas fa-search" }),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

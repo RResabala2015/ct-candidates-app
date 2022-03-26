@@ -2,14 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 mb-4 mt-2">
-        <input
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <div class="input-group input-group-sm">
+          <input
+            class="form-control form-control-navbar mb-2"
+            type="search"
+            v-model="search"
+            placeholder="Search by task"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-navbar">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
         <router-link :to="{ name: 'newTask' }" class="btn btn-success"
-          ><i class="fa-solid fa-list-check"></i
-        ></router-link>
+          ><i class="fa-solid fa-list-check"></i> Add new task</router-link
+        >
       </div>
       <div class="col-12">
         <div class="table-responsive">
@@ -23,8 +31,14 @@
             <tbody>
               <tr v-for="task in tasks" :key="task.id">
                 <td>
-                  <input type="checkbox" v-model="task.completed" @change="updatecheck(task.id)"/>
-                  <span :class="[task.completed ? 'completed' : '']">{{ task.title }}</span>
+                  <input
+                    type="checkbox"
+                    v-model="task.completed"
+                    @change="updatecheck(task.id)"
+                  />
+                  <span :class="[task.completed ? 'completed' : '']">{{
+                    task.title
+                  }}</span>
                 </td>
 
                 <td>
@@ -55,6 +69,7 @@ export default {
   data() {
     return {
       tasks: [],
+      search: "",
     };
   },
   mounted() {
@@ -92,6 +107,21 @@ export default {
         .catch((error) => {
           this.getTasks();
         });
+    },
+    getTask: function () {
+      this.axios
+        .get("/api/tasks/" + this.search)
+        .then((response) => {
+          this.tasks = response.data;
+        })
+        .catch((error) => {
+          this.tasks = [];
+        });
+    },
+  },
+  watch: {
+    search: function () {
+      this.getTask();
     },
   },
 };

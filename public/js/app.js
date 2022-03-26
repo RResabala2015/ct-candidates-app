@@ -2253,10 +2253,6 @@ var Edit = function Edit() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_tasks_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/tasks/Edit.vue */ "./resources/js/components/tasks/Edit.vue"));
 };
 
-var Show = function Show() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_tasks_Show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/tasks/Show.vue */ "./resources/js/components/tasks/Show.vue"));
-};
-
 var List = function List() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_tasks_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/tasks/List.vue */ "./resources/js/components/tasks/List.vue"));
 };
@@ -2273,10 +2269,6 @@ var routes = [{
   name: "editTask",
   path: "/edit/:id",
   component: Edit
-}, {
-  name: "showTask",
-  path: "/show/:id",
-  component: Show
 }, {
   name: "listTasks",
   path: "/list",
@@ -35310,7 +35302,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_tasks_Add_vue":1,"resources_js_components_tasks_Edit_vue":1,"resources_js_components_tasks_Show_vue":1,"resources_js_components_tasks_List_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_tasks_Add_vue":1,"resources_js_components_tasks_Edit_vue":1,"resources_js_components_tasks_List_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

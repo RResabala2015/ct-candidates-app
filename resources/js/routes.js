@@ -2,7 +2,6 @@ const Home = () => import("./components/Home.vue");
 
 const Add = () => import("./components/tasks/Add.vue");
 const Edit = () => import("./components/tasks/Edit.vue");
-const Show = () => import("./components/tasks/Show.vue");
 const List = () => import("./components/tasks/List.vue");
 
 export const routes = [
@@ -20,11 +19,6 @@ export const routes = [
         name: "editTask",
         path: "/edit/:id",
         component: Edit,
-    },
-    {
-        name: "showTask",
-        path: "/show/:id",
-        component: Show,
     },
     {
         name: "listTasks",

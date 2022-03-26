@@ -46,6 +46,7 @@ export default {
         .then(response => {
           const {title, completed} = response.data;
           this.task.title = title;
+          this.task.completed = completed;
         })
         .catch(error =>{
             console.log(error);

@@ -84,6 +84,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       title = _response$data.title,
                       completed = _response$data.completed;
                   _this.task.title = title;
+                  _this.task.completed = completed;
                 })["catch"](function (error) {
                   console.log(error);
                 });

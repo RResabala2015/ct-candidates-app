@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/task', TaskController::class);
+Route::get('/{id}/completed', [TaskController::class, 'completed']);

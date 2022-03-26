@@ -9,18 +9,19 @@
 </head>
 <body>
 <div class="container">
-        <h4>NEW TASK</h4>
+        <h4>EDIT TASK</h4>
         <div class="row">
             <div class="col-xl-12 my-1">
-                <form action="{{route('task.store')}}" method="post">
+                <form action="{{route('task.update',$task->id)}}" method="post">
                 @csrf
+                @method('PUT')
                     <div class="form-group my-1">
                         <label for="task">Theme</label>
-                        <input type="text" class="form-control" name="task" required maxlength='100'>
+                        <input type="text" class="form-control" name="task" required maxlength='100'value="{{$task->task}}">
                     </div>
                     <div class="form-group my-1">
                         <label for="order">Descripcion</label>
-                        <input type="text" class="form-control" name="order" required maxlength='100'>
+                        <input type="text" class="form-control" name="order" required maxlength='100'value="{{$task->order}}">
                     </div>
                     <div class="from-group my-3">
                         <input type="submit" class="btn btn-primary" value="SAVE">

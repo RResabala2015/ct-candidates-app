@@ -16,12 +16,12 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $texto=trim($request->get('texto'));
-        $task=DB::table('task')
-                    ->select('id','task')
+        $search=DB::table('task')
+                    ->select('id','task','order')
                     ->where('task','LIKE','%'.$texto.'%')
-                    ->orderBy('task','asc')
-                    ->paginate(10);
-        return view('task.index', compact('task','texto'));
+                    ->orderBy('task','asc');
+        $task = Task::orderBy('completed')->get();
+        return view('task.index',compact('search','texto'))->with(['task'=> $task]);
     }
 
     /**
@@ -44,6 +44,7 @@ class TaskController extends Controller
     {
         $task = new Task;
         $task->task=$request->input('task');
+        $task->order=$request->input('order');
         $task->save();
         return redirect()->route('task.index');
     }
@@ -67,7 +68,8 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task=Task::findOrFail($id);
+        return view('task.edit',compact('task'));
     }
 
     /**
@@ -79,7 +81,22 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task=Task::findOrfail($id);
+        $task->task=$request->input('task');
+        $task->order=$request->input('order');
+        $task->save();
+        return redirect()->route('task.index');
+    }
+
+    public function completed($id){
+        $task = Task::find($id);
+        if ($task->completed){
+            $task->update(['completed'=> false]);
+            return redirect()->back()->with('success',"incomplete");
+        }else {
+            $task->update(['completed'=> true]);
+            return redirect()->back()->with('success',"completed");
+        }
     }
 
     /**

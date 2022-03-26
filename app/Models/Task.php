@@ -10,7 +10,7 @@ class Task extends Model
     //use HasFactory;
     protected $table="task";
     protected $primaryKey="id";
-    protected $fillable = ['task'];
+    protected $fillable = ['completed','task','order'];
 
     public $timestamps = false;
 }

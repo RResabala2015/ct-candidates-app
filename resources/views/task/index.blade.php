@@ -30,28 +30,54 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>STATE</th>
                             <th>TASK</th>
+                            <th>COMPLETED</th>
                             <th>OPTION</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if(count($task)<=0)
                         <tr>
-                            <td colspan="2">No hay resultado</td>
+                            <td colspan="3">No hay resultado</td>
                         </tr>
                         @else
                         @foreach ($task as $task)
                         <tr>
-                            <td>{{$task->task}}</td>
+                        
                             <td>
-                            <form action="{{route('task.destroy',$task->id)}}" method="post" >
-                                @csrf
-                                @method('DELETE')
-
-                                <input type="submit" class="btn btn-danger btn-sm" value="DELETE">
-                            </form>
+                                <a href="{{asset('/' . $task->id . '/completed')}}">Completed</a>
+                            
                             </td>
-                        </tr>
+                            <td>
+                                @if($task->completed)
+                                    <h4><span style="text-decoration: line-through">{{$task->task}}</span></h4>
+                                    <p><span style="text-decoration: line-through"><a href="order"></a>{{$task->order}}</span></p>
+                                @else
+                                    <h4>{{$task->task}}</h4>
+                                    <p><a href="order"></a>{{$task->order}}</p>
+                                @endif
+                                
+                            </td>
+                            <td>
+                                @if($task->completed)
+                                <p><a href="completed"></a>Completed</p>
+                                @else
+                                <p><a href="completed"></a>incomplete</p>
+                                @endif
+                            </td>
+                            <td>
+                            <div class="form-group">
+                                <a href="{{route('task.edit',$task->id)}}" class= "btn btn-warning btn-sm my-1"> Edit</a>
+                                <form action="{{route('task.destroy',$task->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger btn-sm my-1" value="DELETE">
+                                </form>
+                            </div>  
+                            </td>
+                        
+                            </tr>
                         @endforeach
                         @endif
                     </tbody>

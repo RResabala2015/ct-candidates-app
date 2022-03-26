@@ -19790,14 +19790,82 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("main", [
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-dark bg-secondary" },
+      [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+          _vm._v("Dashboard"),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarColor01" },
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item active" },
+                [
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "/" } },
+                    [_vm._v("Home")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { "exact-active-class": "active", to: "/list" },
+                    },
+                    [_vm._v("Task list")]
+                  ),
+                ],
+                1
+              ),
+            ]),
+          ]
+        ),
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", [_c("router-view")], 1),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v(" HELLO FROM VUE! :P ")])])
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarColor01",
+          "aria-controls": "navbarColor01",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation",
+        },
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
   },
 ]
 render._withStripped = true

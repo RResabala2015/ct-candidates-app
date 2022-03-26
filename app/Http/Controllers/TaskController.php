@@ -15,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return task::all();
+        $task = task::all();
+        return response()->json($task);
     }
 
     /**
@@ -26,8 +27,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $task = task::create($request->all());
-        return response()->json($task, 201);
+        $task = task::create($request->post());
+        return response()->json(['task'=> $task]);
     }
 
     /**
@@ -38,7 +39,7 @@ class TaskController extends Controller
      */
     public function show(task $task)
     {
-        return $task;
+        return response()->json($task);
     }
 
     /**
@@ -50,14 +51,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, task $task)
     {
-        $data = $request->validate([
-            'title' => 'required|string',
-            'completed' => 'required|boolean',
-        ]);
-
-        $task->update($data);
-
-        return response()->json($task, 200);
+        $task->fill($request->post())->save();
+        return response()->json(['task'=> $task]);
     }
 
     /**
@@ -70,6 +65,6 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return response('Deleted task', 200);
+        return response()->json(['mensaje'=> 'Tarea eliminada']);
     }
 }

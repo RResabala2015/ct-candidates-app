@@ -19,8 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/tasks', 'App\Http\Controllers\TaskController@index');
-Route::post('/tasks', 'App\Http\Controllers\TaskController@store');
-Route::patch('/tasks/{task}', 'App\Http\Controllers\TaskController@update');
-Route::delete('/tasks/{task}', 'App\Http\Controllers\TaskController@destroy');
-Route::get('/tasks/{task}', 'App\Http\Controllers\TaskController@show');
+Route::resource('tasks', 'App\Http\Controllers\TaskController'::class)->only(['index', 'store', 'show', 'update', 'destroy']);

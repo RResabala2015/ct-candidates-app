@@ -19796,7 +19796,7 @@ var render = function () {
       { staticClass: "navbar navbar-expand-lg navbar-dark bg-secondary" },
       [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Dashboard"),
+          _vm._v("Todo list app"),
         ]),
         _vm._v(" "),
         _vm._m(0),

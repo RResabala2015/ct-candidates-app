@@ -1,9 +1,9 @@
 const Home = () => import("./components/Home.vue");
 
-const New = () => import("./components/New.vue");
-const Edit = () => import("./components/Edit.vue");
-const Show = () => import("./components/Show.vue");
-const List = () => import("./components/List.vue");
+const Add = () => import("./components/tasks/Add.vue");
+const Edit = () => import("./components/tasks/Edit.vue");
+const Show = () => import("./components/tasks/Show.vue");
+const List = () => import("./components/tasks/List.vue");
 
 export const routes = [
     {
@@ -14,7 +14,7 @@ export const routes = [
     {
         name: "newTask",
         path: "/new",
-        component: New,
+        component: Add,
     },
     {
         name: "editTask",

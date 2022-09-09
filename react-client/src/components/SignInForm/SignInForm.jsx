@@ -2,9 +2,10 @@ export const SignInForm = () => {
   return (
     <div class="right-side">
       <div class="forms">
-        <div class="form-inputs">
+        <h3 class="mb-2 text-light">Sign In</h3>
+        {/* <div class="form-inputs">
           <input type="text" placeholder="User name" /> <i class="fa fa-user"></i>
-        </div>
+        </div> */}
         <div class="form-inputs">
           <input type="email" placeholder="Email" autocomplete="chrome-off" /> <i class="fa fa-envelope"></i>
         </div>
@@ -41,7 +42,7 @@ export const SignInForm = () => {
           </li>
         </ul>
         <div class="submit-button">
-          <input type="submit" />
+          <button class="btn btn-primary">Iniciar sesion</button>
         </div>
       </div>
     </div>

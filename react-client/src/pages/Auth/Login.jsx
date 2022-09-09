@@ -1,5 +1,6 @@
 import { SignInForm } from '../../components/SignInForm';
 import './index.css';
+import funiberLogo from '../../assets/funiber.svg';
 
 export const Login = () => {
   return (
@@ -8,12 +9,11 @@ export const Login = () => {
         <div class="form">
           <div class="left-side">
             <div class="content">
-              <h5>Funiber</h5>
+              <img src={funiberLogo} width="300" height={300} />
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua.
               </p>
-              <img src="https://imgur.com/NQesapG.jpg" width="300" />
             </div>
             <div class="social">
               <ul class="social-icons">
@@ -51,6 +51,7 @@ export const Login = () => {
               </ul>
             </div>
           </div>
+
           <SignInForm />
         </div>
       </div>

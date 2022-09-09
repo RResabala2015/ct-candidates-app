@@ -1,3 +1,5 @@
+import { SignUpForm } from '../../components/SignUpForm';
+
 export const Register = () => {
   return (
     <div class="section">
@@ -5,10 +7,10 @@ export const Register = () => {
         <div class="form">
           <div class="left-side">
             <div class="content">
-              <h5>Shop with confidence</h5>
+              <h5>Bienvenido/a a Funiber</h5>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
+                puerta de acceso al Campus Virtual y a los diversos servicios que ponemos a tu disposición con el fin de
+                enriquecer tu experiencia académica.
               </p>
               <img src="https://imgur.com/NQesapG.jpg" width="300" />
             </div>
@@ -48,51 +50,7 @@ export const Register = () => {
               </ul>
             </div>
           </div>
-          <div class="right-side">
-            <div class="forms">
-              <div class="form-inputs">
-                <input type="text" placeholder="User name" /> <i class="fa fa-user"></i>
-              </div>
-              <div class="form-inputs">
-                <input type="email" placeholder="Email" autocomplete="chrome-off" /> <i class="fa fa-envelope"></i>
-              </div>
-              <div class="form-inputs">
-                <input
-                  id="password_input"
-                  class="password-input"
-                  autocomplete="chrome-off"
-                  type="password"
-                  placeholder="Password"
-                />
-                <i class="fa fa-eye" id="password_eye"></i> <p id="random_password" class="random_password"></p>
-              </div>
-              <ul class="strength-list">
-                <li>
-                  <span class="loweruppercase list-group">
-                    <i class="fa fa-circle"></i> <span>Lowercase uppercase</span>
-                  </span>
-                </li>
-                <li>
-                  <span class="list-group numbercase">
-                    <i class="fa fa-circle"></i> <span>Number (0-9)</span>
-                  </span>
-                </li>
-                <li>
-                  <span class="list-group specialcase">
-                    <i class="fa fa-circle"></i> <span>Special Characters(!#@$%*)</span>
-                  </span>
-                </li>
-                <li>
-                  <span class="list-group numcharacter">
-                    <i class="fa fa-circle"></i> <span>8 Characters</span>
-                  </span>
-                </li>
-              </ul>
-              <div class="submit-button">
-                <input type="submit" />
-              </div>
-            </div>
-          </div>
+          <SignUpForm />
         </div>
       </div>
     </div>

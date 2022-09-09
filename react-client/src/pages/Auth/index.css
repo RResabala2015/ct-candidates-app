@@ -128,8 +128,9 @@
     margin-bottom: 10px;
     padding: 0px 10px;
     border: 2px solid #eee;
+    color: #3f3fc5;
     transition: all 0.5s;
-    background-color: #e8f0fe;
+    background-color: #ffffff;
     border-radius: 3px;
     outline: none;
     box-shadow: none
@@ -143,7 +144,7 @@
     letter-spacing: 1px;
     cursor: pointer;
     border: none;
-    text-transform: uppercase
+
 }
 
 .section .container .right-side .forms input[type="submit"]:hover {
@@ -174,9 +175,9 @@
 .form-inputs i {
     position: absolute;
     top: 14px;
-    right: -10px;
-    color: #dbdada;
-    z-index: 1000
+    left: 270px;
+    color: #292525;
+    z-index: 1000;
 }
 
 .list-group i {

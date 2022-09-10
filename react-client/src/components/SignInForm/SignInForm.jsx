@@ -1,59 +1,78 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import UseAxios from '../../utils/axios.interceptor';
+import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useEffect } from 'react';
+import { authService } from '../../services/auth.service';
+
+const INIT_CREDENTIALS = {
+  email: '',
+  password: '',
+};
 
 export const SignInForm = () => {
-  const { signin } = useAuth();
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const [pending, setPending] = useState(false);
+  const [credentials, setCredentials] = useState(INIT_CREDENTIALS);
+  const { login } = useAuth();
 
-  const handleLogin = () => {
-    if (!email | !password) {
-      setError('Preencha todos os campos');
-      return;
+  useEffect(() => {
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      username: state?.username ? state.username : prevCredentials.username,
+    }));
+  }, [state]);
+
+  const onChange = ({ target }) => {
+    let { name, value } = target;
+
+    setCredentials({
+      ...credentials,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setPending(true);
+
+    try {
+      const { status, data } = await authService.login(credentials);
+      setPending(false);
+      if (status === 200) {
+        login(data);
+        navigate(state?.from ? state.from : '/', {
+          replace: true,
+        });
+      } else console.warn(status, data);
+    } catch (error) {
+      console.error(error);
+      setPending(false);
     }
-
-    const res = signin(email, senha);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    navigate('/home');
   };
 
   return (
     <div className="right-side">
-      <div className="forms">
+      <form onSubmit={onSubmit} className="forms">
         <h3 className="mb-2 text-light">Sign In</h3>
         {/* <div className="form-inputs">
           <input type="text" placeholder="User name" /> <i className="fa fa-user"></i>
         </div> */}
         <div className="form-inputs">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autocomplete="chrome-off"
-          />{' '}
+          <input type="email" placeholder="Email" name="email" value={credentials.email} onChange={onChange} />{' '}
           <i className="fa fa-envelope"></i>
         </div>
         <div className="form-inputs">
           <input
-            id="password_input"
+            id="password"
+            name="password"
             className="password-input"
-            autocomplete="chrome-off"
             type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            value={credentials.password}
+            onChange={onChange}
           />
           {showPassword ? (
             <i className="fa fa-eye-slash" onClick={() => setShowPassword(!showPassword)}></i>
@@ -61,17 +80,20 @@ export const SignInForm = () => {
             <i className="fa fa-eye" onClick={() => setShowPassword(!showPassword)}></i>
           )}
         </div>
-        {error && (
-          <div class="alert alert-danger" role="alert">
+        {/* {error && (
+          <div className="alert alert-danger" role="alert">
             {error}
           </div>
-        )}
+        )} */}
         <div className="submit-button">
-          <button type="submit" onClick={handleLogin} className="btn btn-info">
-            Iniciar sesion
-          </button>
+          <button className="btn btn-primary">{pending ? <i className="fa fa-spinner fa-spin"></i> : 'Sign In'}</button>
         </div>
-      </div>
+        <span className="text-light">
+          <small>
+            No tienes una cuenta? <Link to="/register">registrate aqui</Link>
+          </small>
+        </span>
+      </form>
     </div>
   );
 };

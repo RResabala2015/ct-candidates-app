@@ -1,68 +1,64 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import { authService } from '../services/auth.service';
+import { useStorage } from './StorageContext';
 
-export const AuthContext = createContext({});
+const AuthContext = createContext(null);
+
+const getUserState = (storage) => {
+  const user = storage.user();
+  return user;
+
+  // sometimes we need request to endpoint for get additional user data
+  // const { accessToken } = user;
+  // request to endpoint and return combining user data and response
+};
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const storage = useStorage();
+  const [user, setUser] = useState(() => getUserState(storage));
 
-  useEffect(() => {
-    const userToken = localStorage.getItem('user_token');
-    const usersStorage = localStorage.getItem('users_bd');
+  const login = useCallback(
+    (user) => {
+      storage.setUser(user);
+      setUser(getUserState(storage));
+    },
+    [storage],
+  );
 
-    if (userToken && usersStorage) {
-      const hasUser = JSON.parse(usersStorage)?.filter((user) => user.email === JSON.parse(userToken).email);
-
-      if (hasUser) setUser(hasUser[0]);
-    }
-  }, []);
-
-  const signin = (email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem('users_bd'));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if (hasUser?.length) {
-      if (hasUser[0].email === email && hasUser[0].password === password) {
-        const token = Math.random().toString(36).substring(2);
-        localStorage.setItem('user_token', JSON.stringify({ email, token }));
-        setUser({ email, password });
-        return;
-      } else {
-        return 'E-mail ou senha incorretos';
-      }
-    } else {
-      return 'Usuário não cadastrado';
-    }
-  };
-
-  const signup = (email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem('users_bd'));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if (hasUser?.length) {
-      return 'Já tem uma conta com esse E-mail';
-    }
-
-    let newUser;
-
-    if (usersStorage) {
-      newUser = [...usersStorage, { email, password }];
-    } else {
-      newUser = [{ email, password }];
-    }
-
-    localStorage.setItem('users_bd', JSON.stringify(newUser));
-
-    return;
-  };
-
-  const signout = () => {
+  const logout = useCallback(() => {
+    storage.removeUser();
     setUser(null);
-    localStorage.removeItem('user_token');
-  };
+  }, [storage]);
+
+  const refresh = useCallback(
+    (token) => {
+      const persistedUser = storage.user();
+      const newUser = { ...persistedUser, ...token };
+      storage.setUser(newUser);
+      setUser(newUser);
+    },
+    [storage],
+  );
 
   return (
-    <AuthContext.Provider value={{ user, signed: !!user, signin, signup, signout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        auth: Boolean(user),
+        user,
+        login,
+        logout,
+        refresh,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
+};
+
+export const useAuth = () => {
+  const auth = useContext(AuthContext);
+  if (!auth) throw Error('useAuth should use whitin a <AuthProvider />.');
+
+  return auth;
 };

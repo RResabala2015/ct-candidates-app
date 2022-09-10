@@ -1,85 +1,96 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import { Link, useNavigate } from 'react-router-dom';
+import { authService } from '../../services/auth.service';
+
+const INIT_CREDENTIALS = {
+  username: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+};
 
 export const SignUpForm = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [error, setError] = useState('');
+  const [pending, setPending] = useState(false);
+  const [credentials, setCredentials] = useState(INIT_CREDENTIALS);
   const navigate = useNavigate();
 
-  const { signup } = useAuth();
+  const onChange = ({ target: { name, value } }) => {
+    setCredentials({
+      ...credentials,
+      [name]: value,
+    });
+  };
 
-  const handleSignup = () => {
-    if (!email | !username | !password) {
-      setError('All fields are required');
-      return;
-    } else if (password !== passwordConfirm) {
-      setError('Password do not match');
-      return;
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setPending(true);
+
+    try {
+      const { status, data } = await authService.register(credentials);
+      setPending(false);
+
+      if (status === 201)
+        navigate('/login', {
+          state: {
+            username: credentials.username,
+          },
+        });
+      else console.warn(status, data);
+    } catch (error) {
+      console.error(error);
+      setPending(false);
     }
-
-    const res = signup(email, password, username);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    alert('Account created successfully');
-    navigate('/home');
   };
 
   return (
-    <div class="right-side">
-      <div class="forms">
+    <div className="right-side">
+      <form onSubmit={onSubmit} className="forms">
         <h3 className="mb-2 text-light">Sign Up</h3>
-        <div class="form-inputs">
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Username"
-            name="username"
-          />{' '}
-          <i class="fa fa-user"></i>
+        <div className="form-inputs">
+          <input type="text" value={credentials.username} onChange={onChange} placeholder="Username" name="username" />{' '}
+          <i className="fa fa-user"></i>
         </div>
-        <div class="form-inputs">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            autocomplete="chrome-off"
-          />{' '}
-          <i class="fa fa-envelope"></i>
+        <div className="form-inputs">
+          <input type="email" placeholder="Email" value={credentials.email} onChange={onChange} name="email" />{' '}
+          <i className="fa fa-envelope"></i>
         </div>
-        <div class="form-inputs">
+        <div className="form-inputs">
           <input
             id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            class="password-input"
-            autocomplete="chrome-off"
+            value={credentials.password}
+            onChange={onChange}
+            className="password-input"
             type="password"
             placeholder="Password"
           />
         </div>
-        {error && (
-          <div class="alert alert-danger" role="alert">
+        <div className="form-inputs">
+          <input
+            id="password_confirmation"
+            name="password_confirmation"
+            value={credentials.password_confirmation}
+            onChange={onChange}
+            className="password-input"
+            type="password"
+            placeholder="Password Confirmation"
+          />
+        </div>
+        {/* {error && (
+          <div className="alert alert-danger" role="alert">
             {error}
           </div>
-        )}
-        <div class="submit-button">
-          <button class="btn btn-primary" onClick={handleSignup}>
-            Sign Up
+        )} */}
+        <div className="submit-button">
+          <button className="btn btn-primary">
+            {pending ? <i className="fa fa-spinner fa-spin"></i> : 'Registrar'}
           </button>
         </div>
-      </div>
+        <span className="text-light">
+          <small>¿Ya tienes una cuenta?</small>
+          <Link to="/login">Iniciar sesión</Link>
+        </span>
+      </form>
     </div>
   );
 };

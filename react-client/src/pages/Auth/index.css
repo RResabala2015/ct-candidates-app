@@ -141,9 +141,10 @@
     background-color: #fafafa;
     border-radius: 5px;
     color: rgb(36, 36, 36);
-    letter-spacing: 1px;
+
     cursor: pointer;
     border: none;
+    font-size: 12px;
 
 }
 

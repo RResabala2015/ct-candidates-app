@@ -4,46 +4,46 @@ import funiberLogo from '../../assets/funiber.svg';
 
 export const Login = () => {
   return (
-    <div class="section">
-      <div class="container">
-        <div class="form">
-          <div class="left-side">
-            <div class="content">
+    <div className="section">
+      <div className="container rounded-lg">
+        <div className="form">
+          <div className="left-side">
+            <div className="content">
               <img src={funiberLogo} width="300" height={300} />
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua.
               </p>
             </div>
-            <div class="social">
-              <ul class="social-icons">
+            <div className="social">
+              <ul className="social-icons">
                 <li>
                   <a href="#">
-                    <i class="fa fa-facebook"></i>
+                    <i className="fa fa-facebook"></i>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="fa fa-twitter"></i>
+                    <i className="fa fa-twitter"></i>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="fa fa-linkedin"></i>
+                    <i className="fa fa-linkedin"></i>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="fa fa-instagram"></i>
+                    <i className="fa fa-instagram"></i>
                   </a>
                 </li>
               </ul>
-              <ul class="terms">
+              <ul className="terms">
                 <li>
                   <a href="#">Terms</a>
                 </li>
                 <li>
-                  <span class="dots"></span>
+                  <span className="dots"></span>
                 </li>
                 <li>
                   <a href="#">Services</a>

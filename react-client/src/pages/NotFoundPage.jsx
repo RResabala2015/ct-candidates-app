@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
       <div className="row">
         <div className="col-md-12">
           <h1>
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
             404
           </h1>
           <h2>Oops... Page Not Found!</h2>

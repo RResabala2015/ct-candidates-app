@@ -30,8 +30,15 @@ class AuthController extends Controller
     {
         $validator = $request->all();
 
+        //if has a remember_token save it in the database
+        if ($request->has('remember_token')) {
+            $remember_token = $request->remember_token;
+        } else {
+            $remember_token = null;
+        }
+        
         try {
-            $user = $this->userservice->store($request->all(), $validator);
+            $user = $this->userservice->store($request->all(), $validator, $remember_token);
            
             return response()->json([
                 'message' => 'User created successfully',

@@ -20,9 +20,15 @@ class AuthRepository implements AuthRepositoryInterface
     }
 
     //creating a user
-    public function store($data)
+    public function store($data, $validator)
     {
-        $user = $this->user::create($data);
+        $user = $this->user::create(array_merge(
+            $validator,
+            ['password' => Hash::make($data['password']),
+            'remember_token' => $data['remember_token']]
+            
+        ));
+        
         return $user;
     }
 

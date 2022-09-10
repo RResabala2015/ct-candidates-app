@@ -6,7 +6,7 @@ use App\Models\User;
 
 interface AuthRepositoryInterface
 {
-    public function store($data);
+    public function store($data, $validator);
     /**
      * Get Task by ID
      */

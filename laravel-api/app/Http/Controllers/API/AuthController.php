@@ -30,19 +30,20 @@ class AuthController extends Controller
     {
         $validator = $request->all();
 
-        $user = $this->userservice->store($request->all());
-
-        if ($user) {
+        try {
+            $user = $this->userservice->store($request->all(), $validator);
+           
             return response()->json([
-                'token' => $user->createToken('tokens')->plainTextToken,
-                'message' => 'User created successfully!',
-                'data' => $user
-            ], 200);
+                'message' => 'User created successfully',
+                'user' => $user
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'User not created',
+                'error' => $e->getMessage()
+            ], 500);
         }
-        return response()->json([
-            'Message' => 'Registration failed!',
-            'status' => 'error'
-        ], 500);
+      
     }
 
     public function login(LoginRequest $request)

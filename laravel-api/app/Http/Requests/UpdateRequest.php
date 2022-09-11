@@ -24,11 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'min:1|string',
-            'description' => 'string',
-            'category' => 'string',
-            'completed' => 'boolean',
-            'name' => 'string|min:4'
+          
+            'completed' => ['required', 'boolean'],
+          
         ];
     }
 }

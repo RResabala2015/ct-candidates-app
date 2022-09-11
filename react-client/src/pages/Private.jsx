@@ -33,9 +33,7 @@ const Private = () => {
       <button onClick={onLogout} className="btn btn-danger">
         Cerrar sesion
       </button>
-      <h2>
-        <TodoApp todos={todos} />
-      </h2>
+      {todos.length > 0 ? <TodoApp todos={todos} /> : <h2>No hay tareas</h2>}
     </div>
   );
 };

@@ -37,17 +37,19 @@ export const createTodo = createAsyncThunk('todos/createTodo', async (todo) => {
   }
 });
 
-export const editTodo = createAsyncThunk('todos/editTodo', async (id) => {
+export const editTodo = createAsyncThunk('todos/editTodo', async (data) => {
+  const { id, completed } = data;
   try {
-    const res = await fetch(`${baseURL}/api/todos/${id}`, {
-      method: 'PATCH',
+    const res = await fetch(`${baseURL}/user/todo/update/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ body: todo.body, duration: todo.duration }),
+      body: JSON.stringify({ completed }),
     });
     const data = await res.json();
 
+    console.log(data);
     return data;
   } catch (err) {
     return err.message;
@@ -101,9 +103,9 @@ export const todosSlice = createSlice({
         .map((todo) =>
           // loop through each original todos, if the todo id is = to the payload id
           // return the payload (it means it's updated) else just return all original todos
-          todo._id === action.payload._id ? action.payload : todo,
+          todo.id === action.payload.id ? action.payload : todo,
         )
-        .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
       state.isLoading = false;
     },
@@ -115,7 +117,7 @@ export const todosSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTodo.fulfilled]: (state, action) => {
-      state.todos = state.todos.filter((todo) => todo._id !== action.payload._id);
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
       state.isLoading = false;
     },
     [deleteTodo.rejected]: (state) => {

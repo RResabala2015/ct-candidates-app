@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TodoRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Http\Resources\TodoResource;
 use App\Services\AuthService;
 use App\Services\TodoService;
@@ -27,9 +28,7 @@ class TodoController extends Controller
     public function all()
     {
         $task = $this->todoservice->all();
-        if(count($task) <= 0) {
-            return response(['message' => 'no tasks found!'], 404);
-        }
+      
         return response()->json($task);
     }
 
@@ -91,21 +90,22 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TodoRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $data = $request->all();
 
         //to get a particular task
         $task = $this->todoservice->show($id);
 
-        //to check permission to update task
-        if($task['user_id'] == Auth::id()) {
+        // //to check permission to update task
+        // if($task['user_id'] == Auth::id()) {
             $response = $this->todoservice->update($data, $id);
              return response([
             'Message' => 'Task Updated!',
-            'data' => $response
+            'data' => $response,
+            'status' => 'success'
         ], 200);
-        }
+        // }
         return response([
             'Message' => 'Permission denied! Task does not belong to you!'
         ]);

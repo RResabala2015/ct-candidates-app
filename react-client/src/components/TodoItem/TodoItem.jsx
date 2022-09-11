@@ -1,45 +1,72 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../../redux/slices/todosSlice';
+import { deleteTodo, editTodo } from '../../redux/slices/todosSlice';
 
 export const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
 
+  const [title, setTitle] = useState();
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (todo.completed === false) {
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
+  }, [todo.completed]);
+
   const handleDelete = (id) => dispatch(deleteTodo(id));
 
-  const [title, setTitle] = useState();
+  const handleEdit = (id, checked) => {
+    try {
+      const resp = dispatch(
+        editTodo({
+          id,
+          completed: checked ? false : true,
+        }),
+      );
 
-  const handleEdit = (e) => {
-    e.preventDefault();
+      toast.success('Todo actualizado correctamente', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+        position: 'top-right',
+        iconTheme: {
+          primary: '#fff',
+          secondary: '#333',
+        },
+        icon: '👍',
+      });
 
-    if (!title) return;
-
-    dispatch(editTodo({ id: todo.id, title, completed: todo.completed }));
-    onClose();
+      setChecked(!checked);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    setBody(todo.body);
-    setDuration(todo.duration);
-  }, [todo]);
+    setTitle(todo.title);
+  }, [todo.title]);
 
   return (
     <div key={todo.id} className="list-wrapper">
       <ul className="d-flex flex-column-reverse todo-list">
-        <li className={todo.completed ? 'completed' : ''}>
+        <li className={checked ? 'completed' : ''}>
           <div className="form-check">
             <label className="form-check-label">
               <input
                 className="checkbox"
                 type="checkbox"
-                checked={todo.completed}
-                onChange={() =>
-                  updateTodo({
-                    ...todo,
-                    completed: !todo.completed,
-                  })
-                }
+                checked={checked}
+                onChange={() => handleEdit(todo.id, checked)}
+                onClick={handleEdit}
               />
-              {todo.title} <i className="input-helper"></i>
+              {title} <i className="input-helper"></i>
             </label>
           </div>
 

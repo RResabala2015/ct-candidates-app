@@ -1,4 +1,5 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import jwtDecode from 'jwt-decode';
+import { createContext, useCallback, useContext, useState, useEffect } from 'react';
 
 import { useStorage } from './StorageContext';
 
@@ -46,6 +47,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         auth: Boolean(user),
         user,
+
         login,
         logout,
         refresh,

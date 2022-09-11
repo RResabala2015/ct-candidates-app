@@ -18,7 +18,22 @@ export const TodoItem = ({ todo }) => {
     }
   }, [todo.completed]);
 
-  const handleDelete = (id) => dispatch(deleteTodo(id));
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id));
+    toast.success('Todo eliminado', {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+      position: 'top-right',
+      iconTheme: {
+        primary: '#fff',
+        secondary: '#333',
+      },
+      icon: '🗑️',
+    });
+  };
 
   const handleEdit = (id, checked) => {
     try {

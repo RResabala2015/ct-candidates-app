@@ -117,6 +117,7 @@ export const todosSlice = createSlice({
       state.isLoading = true;
     },
     [deleteTodo.fulfilled]: (state, action) => {
+      console.log(state);
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
       state.isLoading = false;
     },

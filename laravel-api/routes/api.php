@@ -33,8 +33,8 @@ Route::prefix('user')->group(function () {
 
 //protected routes
 Route::group(['middleware' => 'jwt.verify'], function () {
+    Route::post('/user/logout', [AuthController::class, 'logout']);
 
-     Route::post('/user/logout', [AuthController::class, 'logout']);
      Route::post('/user/refresh', [AuthController::class, 'refresh']);
     // Route::get('/todos', [TodoController::class, 'all']);
     // Route::get('todo/show/{id}', [TodoController::class, 'show']);

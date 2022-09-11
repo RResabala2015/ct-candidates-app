@@ -34,8 +34,8 @@ const useAxiosPrivate = () => {
         try {
           prevReq.sent = true;
           const { status, token } = await authService.refreshToken();
-          console.log(status, token);
-          if (status === 200) refresh(token);
+          // console.log(status, token);
+          // if (status === 200) refresh(token);
           prevReq.headers['x-access-token'] = `Bearer ${token}`;
           return axiosPrivate(prevReq);
         } catch (error) {

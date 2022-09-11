@@ -31,4 +31,8 @@ export const authService = {
       },
     );
   },
+
+  logout: () => {
+    return axiosPrivate.post('/user/logout');
+  },
 };

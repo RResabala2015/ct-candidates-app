@@ -8,5 +8,4 @@ interface AuthRepositoryInterface
 {
     public function store($data, $validator, $remember_token);
    
-    
 }

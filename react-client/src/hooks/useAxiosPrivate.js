@@ -8,11 +8,13 @@ import { axiosPrivate } from '../utils/axios.';
 const useAxiosPrivate = () => {
   const { user, refresh, logout } = useAuth();
 
+  // console.log(user);
+
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (config.headers['x-access-token']) return config;
-        config.headers['x-access-token'] = user?.accessToken;
+        config.headers['x-access-token'] = `Bearer ${user}`;
         return config;
       },
       (error) => Promise.reject(error),
@@ -31,9 +33,10 @@ const useAxiosPrivate = () => {
 
         try {
           prevReq.sent = true;
-          const { status, data } = await authService.refreshToken(user?.refreshToken);
-          if (status === 200) refresh(data);
-          prevReq.headers['x-access-token'] = data?.accessToken;
+          const { status, token } = await authService.refreshToken();
+          console.log(status, token);
+          if (status === 200) refresh(token);
+          prevReq.headers['x-access-token'] = `Bearer ${token}`;
           return axiosPrivate(prevReq);
         } catch (error) {
           logout();

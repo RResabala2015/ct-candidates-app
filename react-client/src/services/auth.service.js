@@ -1,10 +1,9 @@
 import { axiosPrivate, axiosPublic } from '../utils/axios.';
 
 export const authService = {
-  refreshToken: (token) => {
-    return axiosPublic.post('/api/auth/refreshtoken', {
-      refreshToken: token,
-    });
+  refreshToken: () => {
+    const token = axiosPrivate.post('/user/refresh');
+    return token;
   },
 
   register: (data) => {

@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+
 import { useAuth } from '../context/AuthContext';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { TodoApp } from './Home';
+import { getTodos } from '../redux/slices/todosSlice';
 
 const Private = () => {
-  const privateAxios = useAxiosPrivate();
-  const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(true);
   const { logout } = useAuth();
 
+  const dispatch = useDispatch();
+  const { todos } = useSelector((state) => state.todos);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await privateAxios.get('/api/test/user');
-        setContent(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [privateAxios]);
+    dispatch(getTodos());
+  }, [dispatch]);
 
   const onLogout = async () => {
     try {
@@ -33,12 +26,16 @@ const Private = () => {
     }
   };
 
+  // console.log(todos);
+
   return (
     <div className="container">
       <button onClick={onLogout} className="btn btn-danger">
         Cerrar sesion
       </button>
-      <h2>{loading ? 'loading ...' : <TodoApp />}</h2>
+      <h2>
+        <TodoApp todos={todos} />
+      </h2>
     </div>
   );
 };

@@ -32,25 +32,5 @@ class AuthRepository implements AuthRepositoryInterface
         return $user;
     }
     
-    //getting a particular user
-    public function show($id)
-    {
-        $user = $this->user::findOrFail($id);
-        return $user;
-    }
-
-    //getting all users
-    public function all()
-    {
-        $users = $this->user::all();
-        return $users;
-    }
-
-    // updating a user
-    public function update($data, $id)
-    {
-        $user = $this->user::findOrFail($id);
-        $user->update($data);
-        return $user;
-    }
+  
 }

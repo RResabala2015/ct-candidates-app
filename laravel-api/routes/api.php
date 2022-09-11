@@ -24,19 +24,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('user')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/todos', [TodoController::class, 'all']);
+    Route::get('/todo/show/{id}', [TodoController::class, 'show']);
+    Route::post('/todo/create', [TodoController::class, 'store']);
+    Route::put('/todo/update/{id}', [TodoController::class, 'update']);
+    Route::delete('/todo/delete/{id}', [TodoController::class, 'destroy']);
 });
 
 //protected routes
 Route::group(['middleware' => 'jwt.verify'], function () {
 
-    Route::get('/users', [AuthController::class, 'allUsers']);
-     Route::put('user/update/{id}', [AuthController::class, 'update']);
-    Route::get('user/profile' , [AuthController::class, 'profile']);
-    Route::get('user/show/{id}', [AuthController::class, 'show']);
-    Route::post('/user/logout', [AuthController::class, 'logout']);
-    Route::get('/todos', [TodoController::class, 'all']);
-    Route::get('todo/show/{id}', [TodoController::class, 'show']);
-    Route::post('todo/create', [TodoController::class, 'store']);
-    Route::put('todo/update/{id}', [TodoController::class, 'update']);
-    Route::delete('todo/delete/{id}', [TodoController::class, 'destroy']);
+     Route::post('/user/logout', [AuthController::class, 'logout']);
+     Route::post('/user/refresh', [AuthController::class, 'refresh']);
+    // Route::get('/todos', [TodoController::class, 'all']);
+    // Route::get('todo/show/{id}', [TodoController::class, 'show']);
+    // Route::post('todo/create', [TodoController::class, 'store']);
+    // Route::put('todo/update/{id}', [TodoController::class, 'update']);
+    // Route::delete('todo/delete/{id}', [TodoController::class, 'destroy']);
+
 });

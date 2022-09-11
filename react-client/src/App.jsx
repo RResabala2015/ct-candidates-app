@@ -6,10 +6,11 @@ import { StorageProvider } from './context/StorageContext';
 import RequireAuth from './guards/RequireAuth';
 
 import { Login, Register } from './pages/Auth';
-import { TodoApp } from './pages/Home';
+
 import { NotFoundPage } from './pages/NotFoundPage';
 import Private from './pages/Private';
 import { userPersistor } from './utils/userPersistor';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <StorageProvider storage={userPersistor}>
         <AuthProvider>
           <div className="App">
+            <Toaster />
             <Routes>
               <Route path="/" element={<Navigate to="/private" />} />
               <Route index path="/login" element={<Login />} />

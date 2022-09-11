@@ -25,7 +25,7 @@ class TodoRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'min:3', 'max:255'],
-            'description' => ['nullable', 'string', 'min:3', 'max:9999'],
+         
             'completed' => ['required', 'boolean'],
         ];
     }

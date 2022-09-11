@@ -90,41 +90,7 @@ class AuthController extends Controller
         }
     }
 
-    public function update(UpdateRequest $request, $id)
-    {
-        $data = $request->only('name');
 
-        $user = $this->userservice->show($id);
-
-        if (Auth::id()) {
-            $response = $this->userservice->update($data, $id);
-            response()->json([
-                'Message' => 'update successful!',
-                'status' => 'success',
-                'data' => $data
-            ], 200);
-        }
-        return response()->json([
-            'Message' => 'Update failed!',
-            'status' => 'error'
-        ], 500);
-    }
-
-
-    public function profile(Request $request)
-    {
-        return auth()->user();
-    }
-
-    public function allUsers()
-    {
-        return $this->userservice->all();
-    }
-
-    public function show($id)
-    {
-        return $this->userservice->show($id);
-    }
 
     protected function createNewToken($user)
     {
@@ -140,5 +106,16 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
+    }
+
+    public function refresh()
+    {
+        $token = JWTAuth::getToken();
+        $token = JWTAuth::refresh($token);
+
+        return response()->json([
+            'success' => true,
+            'token' => $token
+        ], 200);
     }
 }

@@ -41,6 +41,24 @@ class TodoRepository implements TodoRepositoryInterface
     public function destroy(int $id)
     {
         $task = $this->task::findOrFail($id);
-        return $task->delete($id);
+        try {
+            if ($task->delete_at == null) {
+                $task->delete();
+                $task->completed = 1;
+                $task->save();
+                return response()->json(['message' => '
+                Task deleted successfully'], 200);
+                
+            } else {
+                $task->delete_at = null;
+                $task->save();
+            }
+           
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => '
+            Task not deleted'], 500);
+        
+        }
     }
 }

@@ -1,6 +1,5 @@
 import { createContext, useCallback, useContext, useState } from 'react';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
-import { authService } from '../services/auth.service';
+
 import { useStorage } from './StorageContext';
 
 const AuthContext = createContext(null);
@@ -33,6 +32,7 @@ export const AuthProvider = ({ children }) => {
 
   const refresh = useCallback(
     (token) => {
+      console.log('refresh token', token);
       const persistedUser = storage.user();
       const newUser = { ...persistedUser, ...token };
       storage.setUser(newUser);

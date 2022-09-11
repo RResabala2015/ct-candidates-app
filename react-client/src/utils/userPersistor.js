@@ -2,7 +2,7 @@ const USER_KEY = 'user';
 
 export const userPersistor = {
   setUser: (user) => {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    localStorage.setItem(USER_KEY, JSON.stringify(user.access_token));
   },
 
   user: () => {
@@ -10,7 +10,7 @@ export const userPersistor = {
   },
 
   accessToken: () => {
-    return this.user()?.accessToken;
+    return this.user()?.access_token;
   },
 
   refreshToken: () => {

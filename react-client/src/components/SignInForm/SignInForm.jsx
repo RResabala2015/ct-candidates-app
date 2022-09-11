@@ -86,7 +86,7 @@ export const SignInForm = () => {
           </div>
         )} */}
         <div className="submit-button">
-          <button className="btn btn-primary">{pending ? <i className="fa fa-spinner fa-spin"></i> : 'Sign In'}</button>
+          <button className="btn btn-primary">{pending ? <i className="fa fa-spinner fa-spin"></i> : 'Iniciar'}</button>
         </div>
         <span className="text-light">
           <small>

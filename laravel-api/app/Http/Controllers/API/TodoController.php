@@ -54,7 +54,6 @@ class TodoController extends Controller
         $response = $this->todoservice->store([
             'user_id' => $request->get('user_id'),
             'title' => $request->get('title'),
-            'description' => $request->get('description'),
             'completed' => $request->get('completed')
         ]);
 
@@ -122,13 +121,13 @@ class TodoController extends Controller
         $task = $this->todoservice->show($id);
 
         //to check permission to update task
-        if($task['user_id'] == Auth::id()) {
+        // if($task['user_id'] == Auth::id()) {
         $response = $this->todoservice->destroy($id);
          return response([
                 'status' => 'success',
                 'Message' => 'Task Deleted successfully!'
             ], 200);
-        }
+        // }
         return response([
             'status' => 'failed!',
             'Message' => 'Permission denied!, Not your Task!'
